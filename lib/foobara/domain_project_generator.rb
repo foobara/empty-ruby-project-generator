@@ -1,8 +1,3 @@
-require_relative "domain_project_generator/version"
+require "foobara/all"
 
-module Foobara
-  module DomainProjectGenerator
-    class Error < StandardError; end
-    # Your code goes here...
-  end
-end
+Foobara::Util.require_directory "#{__dir__}/../../src"
