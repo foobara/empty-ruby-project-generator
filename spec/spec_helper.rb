@@ -33,4 +33,4 @@ RSpec.configure do |config|
 end
 
 require "foobara/spec_helpers/all"
-require "foobara/domain_project_generator"
+require "foobara/empty_ruby_project_generator"

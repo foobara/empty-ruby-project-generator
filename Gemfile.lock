@@ -28,7 +28,7 @@ GIT
 PATH
   remote: .
   specs:
-    foobara-domain-project-generator (0.1.0)
+    foobara-empty-ruby-project-generator (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -138,7 +138,7 @@ PLATFORMS
 
 DEPENDENCIES
   foobara!
-  foobara-domain-project-generator!
+  foobara-empty-ruby-project-generator!
   foobara-rubocop-rules!
   foobara-spec-helpers!
   foobara-util!

@@ -1,13 +1,13 @@
 require_relative "src/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "foobara-domain-project-generator"
-  spec.version = Foobara::DomainProjectGenerator::VERSION
+  spec.name = "foobara-empty-ruby-project-generator"
+  spec.version = Foobara::EmptyRubyProjectGenerator::VERSION
   spec.authors = ["Miles Georgi"]
   spec.email = ["azimux@gmail.com"]
 
-  spec.summary = "Generates domain project boilerplate code from a template"
-  spec.homepage = "https://github.com/foobara/domain-project-generator"
+  spec.summary = "Generates empty ruby project boilerplate code from a template"
+  spec.homepage = "https://github.com/foobara/empty-ruby-project-generator"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.2"
 
