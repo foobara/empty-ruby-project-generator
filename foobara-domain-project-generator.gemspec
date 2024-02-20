@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative "lib/foobara/domain_project_generator/version"
 
 Gem::Specification.new do |spec|

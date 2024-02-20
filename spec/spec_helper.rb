@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "foobara/domain_project_generator"
 
 RSpec.configure do |config|
