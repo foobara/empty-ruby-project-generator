@@ -1,12 +1,31 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
+ruby File.read("#{__dir__}/.ruby-version")
 
-# Specify your gem's dependencies in foobara-domain_project_generator.gemspec
 gemspec
 
-gem "rake", "~> 13.0"
+# TODO: move this to .gemspec
+gem "foobara", git: "foobara", branch: "main"
+gem "foobara-util", github: "foobara/util"
+# If uncommenting the following for local development, you need to run: bundle config set local.foobara-util ../util
+# gem "foobara-util", git: "foobara-util"
 
-gem "rspec", "~> 3.0"
+gem "rake"
 
-gem "rubocop", "~> 1.21"
+group :development do
+  gem "foobara-rubocop-rules", github: "foobara/rubocop-rules"
+  gem "guard-rspec"
+  gem "rubocop-rake"
+  gem "rubocop-rspec"
+end
+
+group :development, :test do
+  gem "pry"
+  gem "pry-byebug"
+end
+
+group :test do
+  gem "foobara-spec-helpers", github: "foobara/spec-helpers"
+  gem "rspec"
+  gem "rspec-its"
+  gem "simplecov"
+end
