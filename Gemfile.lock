@@ -26,6 +26,11 @@ GIT
     foobara-util (0.1.0)
 
 PATH
+  remote: ../files-generator
+  specs:
+    foobara-files-generator (0.1.0)
+
+PATH
   remote: .
   specs:
     foobara-empty-ruby-project-generator (0.1.0)
@@ -139,6 +144,7 @@ PLATFORMS
 DEPENDENCIES
   foobara!
   foobara-empty-ruby-project-generator!
+  foobara-files-generator!
   foobara-rubocop-rules!
   foobara-spec-helpers!
   foobara-util!
