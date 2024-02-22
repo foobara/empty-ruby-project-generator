@@ -10,18 +10,17 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
     }
   end
   let(:project_config) do
-    Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(
-      domain_name: "SomeDomain",
-      organization_name: "SomeOrg"
-    )
+    Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(full_module_name)
   end
+
+  let(:full_module_name) { "SomeNamespace::SomeOtherNamespace::FinalThingy" }
   let(:output_directory) { "#{__dir__}/../../tmp/domains" }
 
   it "contains base files" do
     expect(outcome).to be_success
 
     expect(result.keys).to include(".github/workflows/ci.yml")
-    expect(result.keys).to include("lib/some_org/some_domain.rb")
+    expect(result.keys).to include("lib/some_namespace/some_other_namespace/final_thingy.rb")
     expect(File).to exist("#{output_directory}/foobara-generated.json")
   end
 end

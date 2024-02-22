@@ -4,13 +4,17 @@ module Foobara
   module Generators
     module EmptyRubyProjectGenerator
       module Generators
-        class BinConsoleGenerator < ProjectGenerator
+        class LibGenerator < ProjectGenerator
           def template_path
             ["lib", "domain.rb.erb"]
           end
 
           def target_path
-            ["lib", underscore_organization_name, "#{underscore_domain_name}.rb"]
+            *path, file = full_project_path.map { |part| Util.underscore(part) }
+
+            file = "#{file}.rb"
+
+            ["lib", *path, file]
           end
         end
       end

@@ -9,7 +9,8 @@ module Foobara
               when ProjectConfig
                 [
                   Generators::CiYamlGenerator,
-                  Generators::BinConsoleGenerator
+                  Generators::BinConsoleGenerator,
+                  Generators::LibGenerator
                 ]
               else
                 # :nocov:
@@ -19,40 +20,19 @@ module Foobara
             end
           end
 
+          alias project_config relevant_manifest
+
           def templates_dir
             "#{__dir__}/../../templates"
           end
 
-          def project_name
-            domain_name
-          end
-
-          def kebab_case_project_name
-            Util.kebab_case(project_name)
-          end
-
-          def has_organization?
-            !!organization_name
-          end
-
-          def underscore_project_name
-            Util.underscore(project_name)
-          end
-
-          def underscore_domain_name
-            Util.underscore(domain_name)
-          end
-
-          def underscore_organization_name
-            Util.underscore(organization_name)
-          end
-
+          # TODO: promote this up to base project
           def ==(other)
-            self.class == other.class && root_manifest == other.root_manifest
+            self.class == other.class && project_config == other.project_config
           end
 
           def hash
-            relevant_manifest.hash
+            project_config.hash
           end
         end
       end

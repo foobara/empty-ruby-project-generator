@@ -1,7 +1,3 @@
 require "foobara/all"
 
-<% if has_organization? %>
-Foobara::Util.require_directory "#{__dir__}/../../src"
-<% else %>
-Foobara::Util.require_directory "#{__dir__}/../src"
-<% end %>
+require "<%= project_lib_file_path %>"
