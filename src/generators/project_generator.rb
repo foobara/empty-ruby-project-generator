@@ -10,8 +10,9 @@ module Foobara
                 [
                   Generators::BinConsoleGenerator,
                   Generators::CiYamlGenerator,
+                  Generators::InitialSpecGenerator,
                   Generators::LibGenerator,
-                  Generators::InitialSpecGenerator
+                  Generators::SpecHelperGenerator
                 ]
               else
                 # :nocov:
