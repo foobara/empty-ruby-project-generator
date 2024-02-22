@@ -11,6 +11,7 @@ module Foobara
                   Generators::BinConsoleGenerator,
                   Generators::ChangelogGenerator,
                   Generators::CiYamlGenerator,
+                  Generators::GemspecGenerator,
                   Generators::InitialSpecGenerator,
                   Generators::LibGenerator,
                   Generators::SpecHelperGenerator,

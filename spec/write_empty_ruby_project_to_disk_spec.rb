@@ -10,7 +10,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
     }
   end
   let(:project_config) do
-    Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(full_module_name)
+    Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(full_module_name, description: "whatever")
   end
 
   let(:full_module_name) { "SomeNamespace::SomeOtherNamespace::FinalThingy" }
