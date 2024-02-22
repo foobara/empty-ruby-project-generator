@@ -21,6 +21,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
     expect(outcome).to be_success
 
     expect(result.keys).to include(".github/workflows/ci.yml")
+    expect(result.keys).to include("lib/some_org/some_domain.rb")
     expect(File).to exist("#{output_directory}/foobara-generated.json")
   end
 end
