@@ -56,10 +56,6 @@ module Foobara
         def add_initial_elements_to_generate
           elements_to_generate << project_config
         end
-
-        def manifest
-          @manifest ||= Manifest::RootManifest.new(manifest_data)
-        end
       end
     end
   end

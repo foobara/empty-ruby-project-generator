@@ -1,6 +1,11 @@
 #!/usr/bin/env ruby
+
 require "bundler/setup"
-require "foobara/empty_ruby_project_generator"
+<% if has_organization? %>
+require "<%= underscore_organization_name %>/<%= underscore_project_name %>"
+<% else %>
+  require "<%= underscore_organization_name %>/<%= underscore_project_name %>"
+<% end %>
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.

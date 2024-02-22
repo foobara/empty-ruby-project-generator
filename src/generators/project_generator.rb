@@ -8,7 +8,8 @@ module Foobara
               case manifest
               when ProjectConfig
                 [
-                  Generators::CiYamlGenerator
+                  Generators::CiYamlGenerator,
+                  Generators::BinConsoleGenerator
                 ]
               else
                 # :nocov:

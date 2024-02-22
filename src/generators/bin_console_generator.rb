@@ -1,10 +1,12 @@
+require_relative "project_generator"
+
 module Foobara
   module Generators
     module EmptyRubyProjectGenerator
       module Generators
-        class CiYamlGenerator < ProjectGenerator
+        class BinConsoleGenerator < ProjectGenerator
           def template_path
-            [".github", "workflows", "ci.yml.erb"]
+            ["bin", "console.erb"]
           end
         end
       end

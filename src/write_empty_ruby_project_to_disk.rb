@@ -28,10 +28,10 @@ module Foobara
 
         def run_post_generation_tasks
           # TODO: implement
-          return
-          add_foobara_to_bundler_config
-          bundle_install
-          rubocop_autocorrect
+          # return
+          # add_foobara_to_bundler_config
+          # bundle_install
+          # rubocop_autocorrect
         end
       end
     end
