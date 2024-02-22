@@ -6,7 +6,7 @@ module Foobara
       module Generators
         class LibGenerator < ProjectGenerator
           def template_path
-            ["lib", "domain.rb.erb"]
+            ["lib", "project_require_file.rb.erb"]
           end
 
           def target_path
