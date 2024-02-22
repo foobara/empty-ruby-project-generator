@@ -4,12 +4,8 @@ module Foobara
   module Generators
     module EmptyRubyProjectGenerator
       class WriteEmptyRubyProjectToDisk < Foobara::Generators::WriteGeneratedFilesToDisk
-        class MissingManifestError < RuntimeError; end
-
-        possible_error MissingManifestError
-
         inputs do
-          raw_manifest :associative_array
+          project_config :duck, :required
           # TODO: should be able to delete this and inherit it
           output_directory :string, :required
         end
@@ -26,10 +22,13 @@ module Foobara
         end
 
         def generate_file_contents
-          self.paths_to_source_code = run_subcommand!(GenerateEmptyRubyProject, manifest: raw_manifest)
+          # TODO: just pass this in as the inputs instead of the command??
+          self.paths_to_source_code = run_subcommand!(GenerateEmptyRubyProject, project_config:)
         end
 
         def run_post_generation_tasks
+          # TODO: implement
+          return
           add_foobara_to_bundler_config
           bundle_install
           rubocop_autocorrect
