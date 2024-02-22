@@ -9,10 +9,12 @@ module Foobara
               when ProjectConfig
                 [
                   Generators::BinConsoleGenerator,
+                  Generators::ChangelogGenerator,
                   Generators::CiYamlGenerator,
                   Generators::InitialSpecGenerator,
                   Generators::LibGenerator,
-                  Generators::SpecHelperGenerator
+                  Generators::SpecHelperGenerator,
+                  Generators::VersionGenerator
                 ]
               else
                 # :nocov:
