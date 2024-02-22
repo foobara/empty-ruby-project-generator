@@ -14,6 +14,7 @@ module Foobara
                   Generators::GemspecGenerator,
                   Generators::InitialSpecGenerator,
                   Generators::LibGenerator,
+                  Generators::LicenseGenerator,
                   Generators::SpecHelperGenerator,
                   Generators::VersionGenerator
                 ]
