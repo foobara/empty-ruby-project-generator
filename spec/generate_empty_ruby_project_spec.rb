@@ -1,13 +1,10 @@
 RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRubyProject do
-  let(:project_config) do
-    Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(full_project_name:, description: "whatever")
-  end
-
   let(:full_project_name) { "Namespace1::Namespace1::Namespace3::Namespace4" }
 
   let(:inputs) do
     {
-      project_config:
+      full_project_name:,
+      description: "whatever"
     }
   end
   let(:command) { described_class.new(inputs) }
@@ -26,15 +23,15 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
     let(:author_emails) { ["a@b.com", "c@d.com"] }
     let(:license) { "LGPL" }
 
-    let(:project_config) do
-      Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(
+    let(:inputs) do
+      {
         full_project_name:,
         description: "whatever",
         homepage_url:,
         author_names:,
         author_emails:,
         license:
-      )
+      }
     end
 
     it "generates an empty ruby project using the given options" do

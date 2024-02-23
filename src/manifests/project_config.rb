@@ -19,15 +19,25 @@ module Foobara
                       :module_name,
                       :module_path
 
-        def initialize(
-          full_project_name:,
-          description:,
-          author_names: nil,
-          author_emails: nil,
-          homepage_url: nil,
-          org: nil,
-          license: "MIT"
-        )
+        def initialize(attributes = nil, options = {})
+          allowed_keys = %i[full_project_name description author_names author_emails homepage_url org
+                            license]
+
+          invalid_keys = options.keys - allowed_keys
+          unless invalid_keys.empty?
+            # :nocov:
+            raise ArgumentError, "Invalid options #{invalid_keys} expected only #{allowed_keys}"
+            # :nocov:
+          end
+
+          full_project_name = attributes[:full_project_name]
+          description = attributes[:description]
+          author_names = attributes[:author_names]
+          author_emails = attributes[:author_emails]
+          homepage_url = attributes[:homepage_url]
+          org = attributes[:org]
+          license = attributes[:license] || "MIT"
+
           full_project_path = full_project_name.split("::")
           full_module_name = full_project_name
           full_module_path = full_module_name.split("::")

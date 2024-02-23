@@ -9,9 +9,7 @@ module Foobara
         possible_error MissingManifestError
 
         # TODO: implement sugar for using a non-registered class as a type
-        inputs do
-          project_config ProjectConfig
-        end
+        inputs ProjectConfig
 
         def execute
           include_non_templated_files
@@ -55,6 +53,10 @@ module Foobara
 
         def add_initial_elements_to_generate
           elements_to_generate << project_config
+        end
+
+        def project_config
+          @project_config ||= ProjectConfig.new(inputs)
         end
       end
     end

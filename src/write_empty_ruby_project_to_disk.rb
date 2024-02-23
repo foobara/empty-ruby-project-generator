@@ -23,7 +23,7 @@ module Foobara
 
         def generate_file_contents
           # TODO: just pass this in as the inputs instead of the command??
-          self.paths_to_source_code = run_subcommand!(GenerateEmptyRubyProject, project_config:)
+          self.paths_to_source_code = run_subcommand!(GenerateEmptyRubyProject, project_config.attributes)
         end
 
         def run_post_generation_tasks
