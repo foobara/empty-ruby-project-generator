@@ -2,75 +2,87 @@ require "English"
 module Foobara
   module Generators
     module EmptyRubyProjectGenerator
-      class ProjectConfig
-        attr_accessor :full_module_name,
-                      :full_module_path,
-                      :full_project_name,
+      class ProjectConfig < Foobara::Model
+        attributes do
+          full_project_name :string, :required
+          description :string, :required
+          author_names [:string]
+          author_emails [:string]
+          homepage_url :string
+          organization_name :string
+          license :string
+        end
+
+        attr_accessor :full_module_path,
+                      :full_module_name,
                       :full_project_path,
                       :module_name,
-                      :module_path,
-                      :author_names,
-                      :author_emails,
-                      :description,
-                      :homepage_url,
-                      :license,
-                      :org_name
+                      :module_path
 
         def initialize(
-          full_project_name,
-          description:, full_project_path: nil,
+          full_project_name:,
+          description:,
           author_names: nil,
           author_emails: nil,
           homepage_url: nil,
           org: nil,
           license: "MIT"
         )
-          self.full_project_name = full_project_name
-          self.full_project_path = full_project_name.split("::")
-          self.full_module_name = full_project_name
-          self.full_module_path = full_module_name.split("::")
+          full_project_path = full_project_name.split("::")
+          full_module_name = full_project_name
+          full_module_path = full_module_name.split("::")
 
-          self.org_name = org || self.full_project_path.first
+          organization_name ||= full_project_path.first
 
-          self.module_name = full_project_name.gsub(/^#{org}::/, "")
-          self.module_path = module_name.split("::")
+          module_name = full_project_name.gsub(/^#{org}::/, "")
+          module_path = module_name.split("::")
 
-          self.author_names = if author_names
-                                author_names
-                              else
-                                name = `git config --get user.name`
+          author_names ||= begin
+            name = `git config --get user.name`
 
-                                if $CHILD_STATUS.exitstatus == 0
-                                  [name.strip]
-                                else
-                                  # :nocov:
-                                  raise "Must set author_names because we can't get it from git for some reason"
-                                  # :nocov:
-                                end
-                              end
+            if $CHILD_STATUS.exitstatus == 0
+              [name.strip]
+            else
+              # :nocov:
+              raise "Must set author_names because we can't get it from git for some reason"
+              # :nocov:
+            end
+          end
 
-          self.author_emails = if author_emails
-                                 author_emails
-                               else
-                                 name = `git config --get user.email`
+          author_emails ||= begin
+            email = `git config --get user.email`
 
-                                 if $CHILD_STATUS.exitstatus == 0
-                                   [name.strip]
-                                 else
-                                   # :nocov:
-                                   raise "Must set author_names because we can't get it from git for some reason"
-                                   # :nocov:
-                                 end
-                               end
+            if $CHILD_STATUS.exitstatus == 0
+              [email.strip]
+            else
+              # :nocov:
+              raise "Must set author_emails because we can't get it from git for some reason"
+              # :nocov:
+            end
+          end
 
-          self.homepage_url = if homepage_url
-                                homepage_url
-                              else
-                                org_part = Util.kebab_case(org_name).gsub("::", "-")
-                                project_part = Util.kebab_case(module_name).gsub("::", "-")
+          homepage_url ||= begin
+            org_part = Util.kebab_case(organization_name).gsub("::", "-")
+            project_part = Util.kebab_case(module_name).gsub("::", "-")
 
-                                "https://github.com/#{org_part}/#{project_part}"
-                              end
+            "https://github.com/#{org_part}/#{project_part}"
+          end
+
+          super(
+            full_project_name:,
+            description:,
+            author_names:,
+            author_emails:,
+            homepage_url:,
+            organization_name:,
+            license:
+          )
+
+          self.full_module_path = full_module_path
+          self.full_module_name = full_module_name
+          self.full_project_path = full_project_path
+          self.module_name = module_name
+          self.module_path = module_path
         end
 
         def kebab_case_project_name

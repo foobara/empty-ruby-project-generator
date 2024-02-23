@@ -15,6 +15,8 @@ gem "rake"
 
 group :development do
   gem "foobara-rubocop-rules", github: "foobara/rubocop-rules"
+  gem "foobara-sh-cli-connector", github: "foobara/sh-cli-connector"
+  # gem "foobara-sh-cli-connector", path: "../sh-cli-connector"
   gem "guard-rspec"
   gem "rubocop-rake"
   gem "rubocop-rspec"

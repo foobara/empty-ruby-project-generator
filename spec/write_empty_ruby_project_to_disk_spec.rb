@@ -10,10 +10,10 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
     }
   end
   let(:project_config) do
-    Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(full_module_name, description: "whatever")
+    Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(full_project_name:, description: "whatever")
   end
 
-  let(:full_module_name) { "SomeNamespace::SomeOtherNamespace::FinalThingy" }
+  let(:full_project_name) { "SomeNamespace::SomeOtherNamespace::FinalThingy" }
   let(:output_directory) { "#{__dir__}/../../tmp/test_project_output" }
 
   it "contains base files" do

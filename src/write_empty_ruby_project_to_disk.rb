@@ -5,7 +5,7 @@ module Foobara
     module EmptyRubyProjectGenerator
       class WriteEmptyRubyProjectToDisk < Foobara::Generators::WriteGeneratedFilesToDisk
         inputs do
-          project_config :duck, :required
+          project_config ProjectConfig, :required
           # TODO: should be able to delete this and inherit it
           output_directory :string, :required
         end

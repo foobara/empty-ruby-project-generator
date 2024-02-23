@@ -1,9 +1,9 @@
 RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRubyProject do
   let(:project_config) do
-    Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(full_module_name, description: "whatever")
+    Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(full_project_name:, description: "whatever")
   end
 
-  let(:full_module_name) { "Namespace1::Namespace1::Namespace3::Namespace4" }
+  let(:full_project_name) { "Namespace1::Namespace1::Namespace3::Namespace4" }
 
   let(:inputs) do
     {
@@ -28,7 +28,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
 
     let(:project_config) do
       Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(
-        full_module_name,
+        full_project_name:,
         description: "whatever",
         homepage_url:,
         author_names:,

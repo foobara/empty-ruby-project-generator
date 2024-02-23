@@ -10,7 +10,7 @@ module Foobara
 
         # TODO: implement sugar for using a non-registered class as a type
         inputs do
-          project_config :duck, :required
+          project_config ProjectConfig
         end
 
         def execute
