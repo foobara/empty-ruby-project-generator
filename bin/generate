@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "foobara/empty_ruby_project_generator"
+require "foobara/sh_cli_connector"
+
+# TODO: create a common file for this booting stuff
+require "pry"
+
+# TODO: allow class to operate as a singleton if desired?
+command_connector = Foobara::CommandConnectors::ShCliConnector.new
+
+command_connector.connect(
+  Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyProjectToDisk
+)
+
+command_connector.run(ARGV)
