@@ -29,7 +29,7 @@ module Foobara
         def include_non_templated_files
           templates_dir_pathname = Pathname.new(templates_dir)
 
-          Dir["#{templates_dir}/**/*"].each do |file_path|
+          Dir["#{templates_dir}/**/*", "#{templates_dir}/**/.*"].each do |file_path|
             next if File.directory?(file_path)
             next if file_path.end_with?(".erb")
 
