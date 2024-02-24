@@ -31,6 +31,7 @@ module Foobara
             bundle_install
             make_bin_files_executable
             rubocop_autocorrect
+            make_initial_git_commit
           end
         end
 
@@ -63,6 +64,20 @@ module Foobara
             if File.file?(file)
               system("chmod u+x #{file}")
             end
+          end
+        end
+
+        def make_initial_git_commit
+          unless system("git init")
+            raise "could not git init"
+          end
+
+          unless system("git add .")
+            raise "could not git add ."
+          end
+
+          unless system("git commit -m 'Initial commit'")
+            raise "could not git commit -m 'Initial commit'"
           end
         end
       end
