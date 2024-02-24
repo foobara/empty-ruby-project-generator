@@ -10,7 +10,8 @@ module Foobara
           author_emails [:string]
           homepage_url :string
           organization_name :string
-          license :string
+          license :string, default: "MIT"
+          foobara_dir :string
         end
 
         attr_accessor :full_module_path,
@@ -20,7 +21,7 @@ module Foobara
                       :module_path
 
         def initialize(attributes = nil, options = {})
-          allowed_keys = %i[full_project_name description author_names author_emails homepage_url org
+          allowed_keys = %i[full_project_name description author_names author_emails homepage_url organization_name
                             license]
 
           invalid_keys = options.keys - allowed_keys
@@ -35,7 +36,7 @@ module Foobara
           author_names = attributes[:author_names]
           author_emails = attributes[:author_emails]
           homepage_url = attributes[:homepage_url]
-          org = attributes[:org]
+          attributes[:organization_name]
           license = attributes[:license] || "MIT"
 
           full_project_path = full_project_name.split("::")
@@ -44,7 +45,7 @@ module Foobara
 
           organization_name ||= full_project_path.first
 
-          module_name = full_project_name.gsub(/^#{org}::/, "")
+          module_name = full_project_name.gsub(/^#{organization_name}::/, "")
           module_path = module_name.split("::")
 
           author_names ||= begin

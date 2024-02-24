@@ -27,11 +27,43 @@ module Foobara
         end
 
         def run_post_generation_tasks
-          # TODO: implement
-          # return
-          # add_foobara_to_bundler_config
-          # bundle_install
-          # rubocop_autocorrect
+          Dir.chdir output_directory do
+            bundle_install
+            make_bin_files_executable
+            rubocop_autocorrect
+          end
+        end
+
+        def bundle_install
+          Bundler.with_unbundled_env do
+            Open3.popen3("bundle install") do |_stdin, _stdout, stderr, wait_thr|
+              exit_status = wait_thr.value
+              unless exit_status.success?
+                # :nocov:
+                raise "could not bundle install. #{stderr.read}"
+                # :nocov:
+              end
+            end
+          end
+        end
+
+        def rubocop_autocorrect
+          Open3.popen3("bundle exec rubocop -A") do |_stdin, _stdout, stderr, wait_thr|
+            exit_status = wait_thr.value
+            unless exit_status.success?
+              # :nocov:
+              raise "could not rubocop -A. #{stderr.read}"
+              # :nocov:
+            end
+          end
+        end
+
+        def make_bin_files_executable
+          Dir["bin/*"].each do |file|
+            if File.file?(file)
+              system("chmod u+x #{file}")
+            end
+          end
         end
       end
     end

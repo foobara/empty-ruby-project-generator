@@ -9,6 +9,7 @@ module Foobara
               when ProjectConfig
                 [
                   Generators::BinConsoleGenerator,
+                  Generators::BundlerConfigGenerator,
                   Generators::ChangelogGenerator,
                   Generators::CiYamlGenerator,
                   Generators::GemspecGenerator,
