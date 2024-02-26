@@ -32,6 +32,7 @@ module Foobara
             make_bin_files_executable
             rubocop_autocorrect
             make_initial_git_commit
+            push_to_github
           end
         end
 
@@ -78,6 +79,20 @@ module Foobara
 
           unless system("git commit -m 'Initial commit'")
             raise "could not git commit -m 'Initial commit'"
+          end
+        end
+
+        def push_to_github
+          unless system("git remote add origin git@github.com:#{project_config.org_slash_project}.git")
+            raise "could not git remote add origin git@github.com:#{project_config.org_slash_project}.git"
+          end
+
+          unless system("git branch -M main")
+            raise "could not git branch -M main"
+          end
+
+          unless system("git push -u origin main")
+            raise "could not git push -u origin main"
           end
         end
       end

@@ -72,12 +72,7 @@ module Foobara
             end
           end
 
-          homepage_url ||= begin
-            org_part = Util.kebab_case(organization_name).gsub("::", "-")
-            project_part = Util.kebab_case(module_name).gsub("::", "-")
-
-            "https://github.com/#{org_part}/#{project_part}"
-          end
+          homepage_url ||= "https://github.com/#{org_slash_project(organization_name, module_name)}"
 
           super(
             full_project_name:,
@@ -98,6 +93,13 @@ module Foobara
 
         def kebab_case_project_name
           Util.kebab_case(full_project_path.join)
+        end
+
+        def org_slash_project(organization_name = self.organization_name, module_name = self.module_name)
+          org_part = Util.kebab_case(organization_name).gsub("::", "-")
+          project_part = Util.kebab_case(module_name).gsub("::", "-")
+
+          "#{org_part}/#{project_part}"
         end
 
         def project_lib_file_path
