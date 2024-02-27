@@ -12,6 +12,7 @@ module Foobara
                   Generators::BundlerConfigGenerator,
                   Generators::ChangelogGenerator,
                   Generators::CiYamlGenerator,
+                  Generators::GitignoreGenerator,
                   Generators::GemspecGenerator,
                   Generators::InitialSpecGenerator,
                   Generators::LibGenerator,
