@@ -1,4 +1,5 @@
 require_relative "src/version"
+require "find"
 
 Gem::Specification.new do |spec|
   spec.name = "foobara-empty-ruby-project-generator"
@@ -19,7 +20,7 @@ Gem::Specification.new do |spec|
     "lib/**/*",
     "src/**/*",
     "LICENSE.txt"
-  ]
+  ] + Find.find("templates/").select { |f| File.file?(f) }
 
   spec.require_paths = ["lib"]
   spec.metadata["rubygems_mfa_required"] = "true"
