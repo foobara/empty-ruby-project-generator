@@ -38,6 +38,8 @@ module Foobara
             make_bin_files_executable
             rubocop_autocorrect
             make_initial_git_commit
+            git_add_remote_origin
+            git_branch_main
             push_to_github
           end
         end
@@ -88,15 +90,19 @@ module Foobara
           end
         end
 
-        def push_to_github
+        def git_add_remote_origin
           unless system("git remote add origin git@github.com:#{project_config.org_slash_project}.git")
             raise "could not git remote add origin git@github.com:#{project_config.org_slash_project}.git"
           end
+        end
 
+        def git_branch_main
           unless system("git branch -M main")
             raise "could not git branch -M main"
           end
+        end
 
+        def push_to_github
           unless system("git push -u origin main")
             raise "could not git push -u origin main"
           end
