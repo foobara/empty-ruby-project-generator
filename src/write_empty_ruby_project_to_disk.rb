@@ -4,6 +4,12 @@ module Foobara
   module Generators
     module EmptyRubyProjectGenerator
       class WriteEmptyRubyProjectToDisk < Foobara::Generators::WriteGeneratedFilesToDisk
+        class << self
+          def generator_key
+            "empty-ruby-project"
+          end
+        end
+
         inputs do
           project_config ProjectConfig, :required
           # TODO: should be able to delete this and inherit it
