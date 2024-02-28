@@ -8,7 +8,6 @@ module Foobara
 
         possible_error MissingManifestError
 
-        # TODO: implement sugar for using a non-registered class as a type
         inputs ProjectConfig
 
         def execute

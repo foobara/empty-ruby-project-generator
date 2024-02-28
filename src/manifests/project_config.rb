@@ -49,27 +49,28 @@ module Foobara
           module_path = module_name.split("::")
 
           author_names ||= begin
+            # TODO: dump a git config file in CI so we don't have to skip this
+            # :nocov:
             name = `git config --get user.name`
 
             if $CHILD_STATUS.exitstatus == 0
               [name.strip]
             else
-              # :nocov:
               raise "Must set author_names because we can't get it from git for some reason"
-              # :nocov:
             end
+            # :nocov:
           end
 
           author_emails ||= begin
+            # :nocov:
             email = `git config --get user.email`
 
             if $CHILD_STATUS.exitstatus == 0
               [email.strip]
             else
-              # :nocov:
               raise "Must set author_emails because we can't get it from git for some reason"
-              # :nocov:
             end
+            # :nocov:
           end
 
           homepage_url ||= "https://github.com/#{org_slash_project(organization_name, module_name)}"
