@@ -16,6 +16,11 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
   let(:full_project_name) { "SomeNamespace::SomeOtherNamespace::FinalThingy" }
   let(:output_directory) { "#{__dir__}/../../empty_ruby_project_test_suite_project_output" }
 
+  before do
+    allow(command).to receive(:push_to_github).and_return(nil)
+    FileUtils.rm_rf output_directory
+  end
+
   it "contains base files" do
     expect(outcome).to be_success
 
