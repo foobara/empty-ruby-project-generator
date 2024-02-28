@@ -1,9 +1,15 @@
 GIT
   remote: foobara
-  revision: 748c5ecc9018a93b05462defec652c851a9029b9
+  revision: 08b4d1315696c5ae5379b59297a493c40d1c3d5f
   branch: main
   specs:
     foobara (0.0.1)
+
+GIT
+  remote: https://github.com/foobara/files-generator.git
+  revision: bd13dc39ea21aab3d5ddde131f85073480cf2195
+  specs:
+    foobara-files-generator (0.1.0)
 
 GIT
   remote: https://github.com/foobara/rubocop-rules.git
@@ -15,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/foobara/sh-cli-connector.git
-  revision: 1db4e1199491e28a41d0f68419aabb57d8e5103d
+  revision: 920393064cdf7abdfe49e5d6e6c7ce423c35c859
   specs:
     foobara-sh-cli-connector (0.1.0)
 
@@ -30,11 +36,6 @@ GIT
   revision: b2e2e9c04d866b26c21b6e223bc359c76fcea0f8
   specs:
     foobara-util (0.1.0)
-
-PATH
-  remote: ../files-generator
-  specs:
-    foobara-files-generator (0.1.0)
 
 PATH
   remote: .

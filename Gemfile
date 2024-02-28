@@ -5,11 +5,11 @@ gemspec
 
 # TODO: move this to .gemspec
 gem "foobara", git: "foobara", branch: "main"
-gem "foobara-util", github: "foobara/util"
-# gem "foobara-files-generator", github: "foobara/files-generator"
-gem "foobara-files-generator", path: "../files-generator"
+gem "foobara-files-generator", github: "foobara/files-generator"
+# gem "foobara-files-generator", path: "../files-generator"
 # If uncommenting the following for local development, you need to run: bundle config set local.foobara-util ../util
-# gem "foobara-util", git: "foobara-util"
+gem "foobara-util", github: "foobara/util"
+# gem "foobara-util", path: "../util"
 
 gem "rake"
 
