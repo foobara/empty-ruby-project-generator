@@ -89,10 +89,13 @@ module Foobara
             # :nocov:
           end
 
-          unless system("git commit -m 'Initial commit'")
-            # :nocov:
-            raise "could not git commit -m 'Initial commit'"
-            # :nocov:
+          Open3.popen3("git commit -m 'Initial commit'") do |_stdin, _stdout, stderr, wait_thr|
+            exit_status = wait_thr.value
+            unless exit_status.success?
+              # :nocov:
+              raise "could not git commit -m 'Initial commit'. #{stderr.read}"
+              # :nocov:
+            end
           end
         end
 
