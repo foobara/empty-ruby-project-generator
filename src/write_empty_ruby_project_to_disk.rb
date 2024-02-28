@@ -37,7 +37,9 @@ module Foobara
             bundle_install
             make_bin_files_executable
             rubocop_autocorrect
-            make_initial_git_commit
+            git_init
+            git_add_all
+            git_commit
             git_add_remote_origin
             git_branch_main
             push_to_github
@@ -76,27 +78,32 @@ module Foobara
           end
         end
 
-        def make_initial_git_commit
+        def git_init
           unless system("git init")
             # :nocov:
             raise "could not git init"
             # :nocov:
           end
+        end
 
+        def git_add_all
           unless system("git add .")
             # :nocov:
             raise "could not git add ."
             # :nocov:
           end
+        end
 
+        def git_commit
+          # TODO: set author/name with git config in CI so we don't have to skip this
+          # :nocov:
           Open3.popen3("git commit -m 'Initial commit'") do |_stdin, _stdout, stderr, wait_thr|
             exit_status = wait_thr.value
             unless exit_status.success?
-              # :nocov:
               raise "could not git commit -m 'Initial commit'. #{stderr.read}"
-              # :nocov:
             end
           end
+          # :nocov:
         end
 
         def git_add_remote_origin

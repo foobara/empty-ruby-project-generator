@@ -23,6 +23,9 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
 
   before do
     allow(command).to receive(:push_to_github).and_return(nil)
+    # rubocop:disable RSpec/AnyInstance
+    allow_any_instance_of(described_class).to receive(:git_commit).and_return(nil)
+    # rubocop:enable RSpec/AnyInstance
     FileUtils.rm_rf output_directory
   end
 
