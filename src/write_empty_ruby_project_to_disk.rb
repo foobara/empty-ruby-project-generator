@@ -78,34 +78,46 @@ module Foobara
 
         def make_initial_git_commit
           unless system("git init")
+            # :nocov:
             raise "could not git init"
+            # :nocov:
           end
 
           unless system("git add .")
+            # :nocov:
             raise "could not git add ."
+            # :nocov:
           end
 
           unless system("git commit -m 'Initial commit'")
+            # :nocov:
             raise "could not git commit -m 'Initial commit'"
+            # :nocov:
           end
         end
 
         def git_add_remote_origin
           unless system("git remote add origin git@github.com:#{project_config.org_slash_project}.git")
+            # :nocov:
             raise "could not git remote add origin git@github.com:#{project_config.org_slash_project}.git"
+            # :nocov:
           end
         end
 
         def git_branch_main
           unless system("git branch -M main")
+            # :nocov:
             raise "could not git branch -M main"
+            # :nocov:
           end
         end
 
         def push_to_github
+          # :nocov:
           unless system("git push -u origin main")
             raise "could not git push -u origin main"
           end
+          # :nocov:
         end
       end
     end

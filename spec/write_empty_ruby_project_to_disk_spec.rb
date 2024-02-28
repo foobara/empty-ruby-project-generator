@@ -28,4 +28,10 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
     expect(result.keys).to include("lib/some_namespace/some_other_namespace/final_thingy.rb")
     expect(File).to exist("#{output_directory}/foobara-generated.json")
   end
+
+  describe ".generator_key" do
+    subject { described_class.generator_key }
+
+    it { is_expected.to be_a(String) }
+  end
 end
