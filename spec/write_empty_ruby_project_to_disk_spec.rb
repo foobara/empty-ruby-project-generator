@@ -10,7 +10,12 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
     }
   end
   let(:project_config) do
-    Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(full_project_name:, description: "whatever")
+    Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(
+      full_project_name:,
+      description: "whatever",
+      author_names: ["Somebody"],
+      author_emails: ["some@email.com"]
+    )
   end
 
   let(:full_project_name) { "SomeNamespace::SomeOtherNamespace::FinalThingy" }
