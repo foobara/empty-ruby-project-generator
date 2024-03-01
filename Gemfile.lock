@@ -1,13 +1,13 @@
 GIT
   remote: foobara
-  revision: 08b4d1315696c5ae5379b59297a493c40d1c3d5f
+  revision: ec078ef1126bf4528242b2c8c242c78ef93ab566
   branch: main
   specs:
     foobara (0.0.1)
 
 GIT
   remote: https://github.com/foobara/files-generator.git
-  revision: bd13dc39ea21aab3d5ddde131f85073480cf2195
+  revision: 036cbc7c677b30b145027853f831da0df852e9f2
   specs:
     foobara-files-generator (0.1.0)
 
@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/foobara/sh-cli-connector.git
-  revision: 920393064cdf7abdfe49e5d6e6c7ce423c35c859
+  revision: 804f1ebf1492829c97609842163564dc21cf8063
   specs:
     foobara-sh-cli-connector (0.1.0)
 
@@ -111,7 +111,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.0)
-    rubocop (1.60.2)
+    rubocop (1.61.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -122,15 +122,15 @@ GEM
       rubocop-ast (>= 1.30.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.30.0)
-      parser (>= 3.2.1.0)
+    rubocop-ast (1.31.1)
+      parser (>= 3.3.0.4)
     rubocop-capybara (2.20.0)
       rubocop (~> 1.41)
     rubocop-factory_bot (2.25.1)
       rubocop (~> 1.41)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    rubocop-rspec (2.26.1)
+    rubocop-rspec (2.27.0)
       rubocop (~> 1.40)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)

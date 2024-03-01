@@ -10,13 +10,13 @@ module Foobara
           end
         end
 
+        depends_on GenerateEmptyRubyProject
+
         inputs do
           project_config ProjectConfig, :required
           # TODO: should be able to delete this and inherit it
-          output_directory :string, :required
+          output_directory :string
         end
-
-        depends_on GenerateEmptyRubyProject
 
         def execute
           generate_file_contents
@@ -25,6 +25,14 @@ module Foobara
           run_post_generation_tasks
 
           paths_to_source_code
+        end
+
+        def output_directory
+          inputs[:output_directory] || default_output_directory
+        end
+
+        def default_output_directory
+          project_config.org_slash_project
         end
 
         def generate_file_contents

@@ -1,4 +1,5 @@
 require "English"
+
 module Foobara
   module Generators
     module EmptyRubyProjectGenerator
@@ -36,7 +37,7 @@ module Foobara
           author_names = attributes[:author_names]
           author_emails = attributes[:author_emails]
           homepage_url = attributes[:homepage_url]
-          attributes[:organization_name]
+          organization_name = attributes[:organization_name]
           license = attributes[:license] || "MIT"
 
           full_project_path = full_project_name.split("::")
@@ -100,7 +101,11 @@ module Foobara
           org_part = Util.kebab_case(organization_name).gsub("::", "-")
           project_part = Util.kebab_case(module_name).gsub("::", "-")
 
-          "#{org_part}/#{project_part}"
+          if org_part.empty?
+            project_part
+          else
+            "#{org_part}/#{project_part}"
+          end
         end
 
         def project_lib_file_path
