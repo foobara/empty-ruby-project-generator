@@ -1,0 +1,30 @@
+<% module_path.each do |part| %>
+module <%= part %>
+<% end %>
+  # class SomeError < RuntimeError
+  #   class << self
+  #     def context_type_declaration
+  #       { foo: :string }
+  #     end
+  #   end
+  # end
+
+  inputs do
+    # some_input :string, :required, default: "foo"
+  end
+
+  # depends_on SomeOtherCommand
+
+  # possible_error SomeError
+
+  def execute
+    # do_something
+  end
+
+  # def validate
+  #   add_runtime_error SomeError.new(message: "kaboom", context: {foo: :bar})
+  # end
+
+<% module_path.size.times do %>
+end
+<% end %>
