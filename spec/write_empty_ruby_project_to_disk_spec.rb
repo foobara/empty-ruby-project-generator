@@ -11,7 +11,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
   end
   let(:project_config) do
     Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(
-      full_project_name:,
+      project_name:,
       description: "whatever",
       author_names: ["Somebody"],
       author_emails: ["some@email.com"],
@@ -19,12 +19,11 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
     )
   end
 
-  let(:full_project_name) { "SomeNamespace::SomeOtherNamespace::FinalThingy" }
+  let(:project_name) { "SomeNamespace::SomeOtherNamespace::FinalThingy" }
   let(:organization_name) { nil }
   let(:output_directory) { "#{__dir__}/../../empty_ruby_project_test_suite_project_output" }
 
   before do
-    allow(command).to receive(:push_to_github).and_return(nil)
     # rubocop:disable RSpec/AnyInstance
     allow_any_instance_of(described_class).to receive(:git_commit).and_return(nil)
     # rubocop:enable RSpec/AnyInstance

@@ -131,11 +131,12 @@ module Foobara
         end
 
         def push_to_github
-          # :nocov:
-          unless system("git push -u origin main")
-            raise "could not git push -u origin main"
+          Open3.popen3("git push -u origin main") do |_stdin, _stdout, stderr, wait_thr|
+            exit_status = wait_thr.value
+            unless exit_status.success?
+              puts  "WARNING: could not git push -u origin main \n #{stderr.read}"
+            end
           end
-          # :nocov:
         end
       end
     end

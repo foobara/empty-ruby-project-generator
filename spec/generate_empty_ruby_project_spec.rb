@@ -1,11 +1,11 @@
 RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRubyProject do
-  let(:full_project_name) { "Namespace1::Namespace1::Namespace3::Namespace4" }
+  let(:project_name) { "Namespace1::Namespace1::Namespace3::Namespace4" }
   let(:author_names) { %w[Foo Bar] }
   let(:author_emails) { ["a@b.com", "c@d.com"] }
 
   let(:inputs) do
     {
-      full_project_name:,
+      project_name:,
       description: "whatever",
       author_names:,
       author_emails:
@@ -27,7 +27,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
 
     let(:inputs) do
       {
-        full_project_name:,
+        project_name:,
         description: "whatever",
         homepage_url:,
         author_names:,
