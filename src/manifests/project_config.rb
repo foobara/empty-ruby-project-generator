@@ -129,9 +129,9 @@ module Foobara
           Util.kebab_case(full_project_path.join)
         end
 
-        def org_slash_project(organization_name = self.organization_name, module_name = self.module_name)
+        def org_slash_project(organization_name = self.organization_name, project_name = self.project_name)
           org_part = Util.kebab_case(organization_name)&.gsub("::", "-")
-          project_part = Util.kebab_case(module_name).gsub("::", "-")
+          project_part = Util.kebab_case(project_name).gsub("::", "-")
 
           if org_part.nil? || org_part.empty?
             project_part
