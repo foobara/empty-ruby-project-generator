@@ -10,7 +10,7 @@ module Foobara
           end
 
           def target_path
-            "#{kebab_case_project_name}.gemspec"
+            "#{kebab_case_full_project_name}.gemspec"
           end
         end
       end

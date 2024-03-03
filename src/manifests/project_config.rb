@@ -20,7 +20,8 @@ module Foobara
                       :full_project_path,
                       :full_project_name,
                       :module_name,
-                      :module_path
+                      :module_path,
+                      :project_path
 
         def initialize(attributes = nil, options = {})
           if attributes
@@ -69,6 +70,7 @@ module Foobara
           module_path = module_name.split("::")
 
           project_name = full_project_name.gsub(/^#{organization_name}::/, "")
+          project_path = project_name.split("::")
 
           author_names ||= begin
             # TODO: dump a git config file in CI so we don't have to skip this
@@ -116,9 +118,14 @@ module Foobara
           self.full_project_path = full_project_path
           self.module_name = module_name
           self.module_path = module_path
+          self.project_path = project_path
         end
 
         def kebab_case_project_name
+          Util.kebab_case(project_path.join)
+        end
+
+        def kebab_case_full_project_name
           Util.kebab_case(full_project_path.join)
         end
 
