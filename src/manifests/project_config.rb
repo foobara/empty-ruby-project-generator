@@ -53,6 +53,8 @@ module Foobara
           # "" to indicate no org and nil to indicate infer it from the project name...
           organization_name = attributes[:organization_name]
 
+          project_name_good = organization_name || attributes[:full_module_name]
+
           no_org = organization_name&.empty?
           organization_name = nil if no_org
 
@@ -69,7 +71,9 @@ module Foobara
           module_name = full_module_name.gsub(/^#{organization_name}::/, "")
           module_path = module_name.split("::")
 
-          project_name = full_project_name.gsub(/^#{organization_name}::/, "")
+          unless project_name_good
+            project_name = full_project_name.gsub(/^#{organization_name}::/, "")
+          end
           project_path = project_name.split("::")
 
           author_names ||= begin
