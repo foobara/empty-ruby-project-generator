@@ -14,13 +14,11 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
       project_name:,
       description: "whatever",
       author_names: ["Somebody"],
-      author_emails: ["some@email.com"],
-      organization_name:
+      author_emails: ["some@email.com"]
     )
   end
 
   let(:project_name) { "SomeNamespace::SomeOtherNamespace::FinalThingy" }
-  let(:organization_name) { nil }
   let(:output_directory) { "#{__dir__}/../../empty_ruby_project_test_suite_project_output" }
 
   before do
@@ -35,18 +33,26 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
       expect(outcome).to be_success
 
       expect(result.keys).to include(".github/workflows/ci.yml")
-      expect(result.keys).to include("lib/some_namespace/some_other_namespace/final_thingy.rb")
+      expect(result.keys).to include("lib/some_namespace/some_other_namespace_final_thingy.rb")
       expect(File).to exist("#{output_directory}/foobara-generated.json")
     end
 
     context "with no #organization_name" do
-      let(:organization_name) { "" }
+      let(:project_config) do
+        Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(
+          project_name:,
+          description: "whatever",
+          author_names: ["Somebody"],
+          author_emails: ["some@email.com"],
+          has_organization: false
+        )
+      end
 
       it "builds a project without an organization name" do
         expect(outcome).to be_success
 
         expect(result.keys).to include(".github/workflows/ci.yml")
-        expect(result.keys).to include("lib/some_namespace/some_other_namespace/final_thingy.rb")
+        expect(result.keys).to include("lib/some_namespace_some_other_namespace_final_thingy.rb")
         expect(File).to exist("#{output_directory}/foobara-generated.json")
       end
     end

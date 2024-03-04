@@ -10,11 +10,15 @@ module Foobara
           end
 
           def target_path
-            *path, file = full_project_path.map { |part| Util.underscore(part) }
+            *path, file = org_slash_project_underscore.split("/")
 
-            file = "#{file}.rb"
+            ["lib", *path, "#{file}.rb"]
+          end
 
-            ["lib", *path, file]
+          def path_to_src
+            up = [".."] * (target_path.size - 1)
+
+            [*up, "src"].join("/")
           end
         end
       end

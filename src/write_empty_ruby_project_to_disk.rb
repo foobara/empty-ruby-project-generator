@@ -32,7 +32,7 @@ module Foobara
         end
 
         def default_output_directory
-          project_config.org_slash_project
+          project_config.org_slash_project_kebab
         end
 
         def generate_file_contents
@@ -115,9 +115,9 @@ module Foobara
         end
 
         def git_add_remote_origin
-          unless system("git remote add origin git@github.com:#{project_config.org_slash_project}.git")
+          unless system("git remote add origin git@github.com:#{project_config.org_slash_project_kebab}.git")
             # :nocov:
-            raise "could not git remote add origin git@github.com:#{project_config.org_slash_project}.git"
+            raise "could not git remote add origin git@github.com:#{project_config.org_slash_project_kebab}.git"
             # :nocov:
           end
         end

@@ -5,6 +5,7 @@ module Foobara
     module EmptyRubyProjectGenerator
       class ProjectConfig < Foobara::Model
         attributes do
+          has_organization :boolean
           organization_name :string, :allow_nil
           project_name :string, :required
           full_module_name :string
@@ -34,6 +35,7 @@ module Foobara
               homepage_url
               organization_name
               license
+              has_organization
             ]
 
             invalid_keys = attributes.keys - allowed_keys
@@ -49,14 +51,19 @@ module Foobara
           author_names = attributes[:author_names]
           author_emails = attributes[:author_emails]
           homepage_url = attributes[:homepage_url]
-          # TODO: very strange interface here...
-          # "" to indicate no org and nil to indicate infer it from the project name...
           organization_name = attributes[:organization_name]
+
+          has_organization = if attributes.key?(:has_organization)
+                               attributes[:has_organization]
+                             elsif attributes.key?(:organization_name)
+                               organization_name && !organization_name.empty?
+                             else
+                               project_name.include?("::")
+                             end
 
           project_name_good = organization_name || attributes[:full_module_name]
 
-          no_org = organization_name&.empty?
-          organization_name = nil if no_org
+          organization_name = nil unless has_organization
 
           license = attributes[:license] || "MIT"
           full_project_name = [*organization_name, project_name].join("::")
@@ -64,7 +71,7 @@ module Foobara
           full_module_name = attributes[:full_module_name] || full_project_name
           full_module_path = full_module_name.split("::")
 
-          unless no_org
+          if has_organization
             organization_name ||= full_project_path.first
           end
 
@@ -101,7 +108,7 @@ module Foobara
             # :nocov:
           end
 
-          homepage_url ||= "https://github.com/#{org_slash_project(organization_name, module_name)}"
+          homepage_url ||= "https://github.com/#{org_slash_project_kebab(organization_name, module_name)}"
 
           super(
             {
@@ -133,7 +140,7 @@ module Foobara
           Util.kebab_case(full_project_path.join)
         end
 
-        def org_slash_project(organization_name = self.organization_name, project_name = self.project_name)
+        def org_slash_project_kebab(organization_name = self.organization_name, project_name = self.project_name)
           org_part = Util.kebab_case(organization_name)&.gsub("::", "-")
           project_part = Util.kebab_case(project_name).gsub("::", "-")
 
@@ -142,6 +149,10 @@ module Foobara
           else
             "#{org_part}/#{project_part}"
           end
+        end
+
+        def org_slash_project_underscore
+          org_slash_project_kebab.gsub("-", "_")
         end
 
         def project_lib_file_path
