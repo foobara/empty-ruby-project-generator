@@ -52,6 +52,7 @@ module Foobara
             git_add_remote_origin
             git_branch_main
             push_to_github
+            rbenv_bundler_on
           end
         end
 
@@ -136,6 +137,17 @@ module Foobara
             exit_status = wait_thr.value
             unless exit_status.success?
               puts  "WARNING: could not git push -u origin main \n #{stderr.read}"
+            end
+          end
+        end
+
+        def rbenv_bundler_on
+          Open3.popen3("rbenv bundler on") do |_stdin, _stdout, stderr, wait_thr|
+            exit_status = wait_thr.value
+            unless exit_status.success?
+              # :nocov:
+              puts  "WARNING: could not rbenv bundler on \n #{stderr.read}"
+              # :nocov:
             end
           end
         end
