@@ -25,7 +25,7 @@ module Foobara
           write_all_files_to_disk
           run_post_generation_tasks
 
-          paths_to_source_code
+          stats
         end
 
         def output_directory
