@@ -34,7 +34,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
 
       expect(result.keys).to include(".github/workflows/ci.yml")
       expect(result.keys).to include("lib/some_namespace/some_other_namespace_final_thingy.rb")
-      expect(File).to exist("#{output_directory}/foobara-generated.json")
+      expect(File).to exist("#{output_directory}/empty-ruby-project-generator.json")
     end
 
     context "with no #organization_name" do
@@ -53,7 +53,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
 
         expect(result.keys).to include(".github/workflows/ci.yml")
         expect(result.keys).to include("lib/some_namespace_some_other_namespace_final_thingy.rb")
-        expect(File).to exist("#{output_directory}/foobara-generated.json")
+        expect(File).to exist("#{output_directory}/empty-ruby-project-generator.json")
       end
     end
   end

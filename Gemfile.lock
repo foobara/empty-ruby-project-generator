@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/foobara/files-generator.git
-  revision: 036cbc7c677b30b145027853f831da0df852e9f2
+  revision: b7a8c8a40f2be336789488cb044f9a0e97be4176
   specs:
     foobara-files-generator (0.1.0)
 
@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/foobara/sh-cli-connector.git
-  revision: 804f1ebf1492829c97609842163564dc21cf8063
+  revision: 78ff61ace804add30060043b663f48e5fc39fa3f
   specs:
     foobara-sh-cli-connector (0.1.0)
 
@@ -130,7 +130,7 @@ GEM
       rubocop (~> 1.41)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    rubocop-rspec (2.27.0)
+    rubocop-rspec (2.27.1)
       rubocop (~> 1.40)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
