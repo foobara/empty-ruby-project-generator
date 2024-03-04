@@ -32,8 +32,8 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
     it "contains base files" do
       expect(outcome).to be_success
 
-      expect(result.keys).to include(".github/workflows/ci.yml")
-      expect(result.keys).to include("lib/some_namespace/some_other_namespace_final_thingy.rb")
+      expect(command.paths_to_source_code.keys).to include(".github/workflows/ci.yml")
+      expect(command.paths_to_source_code.keys).to include("lib/some_namespace/some_other_namespace_final_thingy.rb")
       expect(File).to exist("#{output_directory}/empty-ruby-project-generator.json")
     end
 
@@ -51,8 +51,8 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
       it "builds a project without an organization name" do
         expect(outcome).to be_success
 
-        expect(result.keys).to include(".github/workflows/ci.yml")
-        expect(result.keys).to include("lib/some_namespace_some_other_namespace_final_thingy.rb")
+        expect(command.paths_to_source_code.keys).to include(".github/workflows/ci.yml")
+        expect(command.paths_to_source_code.keys).to include("lib/some_namespace_some_other_namespace_final_thingy.rb")
         expect(File).to exist("#{output_directory}/empty-ruby-project-generator.json")
       end
     end
