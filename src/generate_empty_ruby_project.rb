@@ -40,8 +40,6 @@ module Foobara
           end
         end
 
-        attr_accessor :command_manifest, :manifest_data
-
         def base_generator
           Generators::ProjectGenerator
         end
