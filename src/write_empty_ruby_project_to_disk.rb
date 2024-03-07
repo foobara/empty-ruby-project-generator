@@ -74,7 +74,7 @@ module Foobara
             exit_status = wait_thr.value
             unless exit_status.success?
               # :nocov:
-              raise "could not rubocop -A. #{stderr.read}"
+              raise "could not bundle exec rubocop -A. #{stderr.read}"
               # :nocov:
             end
           end
