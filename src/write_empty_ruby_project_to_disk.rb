@@ -6,7 +6,7 @@ module Foobara
       class WriteEmptyRubyProjectToDisk < Foobara::Generators::WriteGeneratedFilesToDisk
         class << self
           def generator_key
-            "empty-ruby-project"
+            "ruby-project"
           end
         end
 
