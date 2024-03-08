@@ -22,22 +22,6 @@ module Foobara
           paths_to_source_code
         end
 
-        # TODO: move this up the hierarchy
-        def include_non_templated_files
-          templates_dir_pathname = Pathname.new(templates_dir)
-
-          Dir["#{templates_dir}/**/*", "#{templates_dir}/**/.*"].each do |file_path|
-            next if File.directory?(file_path)
-            next if file_path.end_with?(".erb")
-
-            file_path = Pathname.new(file_path)
-
-            relative_path = file_path.relative_path_from(templates_dir_pathname)
-
-            paths_to_source_code[relative_path.to_s] = File.read(file_path)
-          end
-        end
-
         def base_generator
           Generators::ProjectGenerator
         end
