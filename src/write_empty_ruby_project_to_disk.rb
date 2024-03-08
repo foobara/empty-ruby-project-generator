@@ -142,14 +142,14 @@ module Foobara
         end
 
         def rbenv_bundler_on
+          # :nocov:
           Open3.popen3("rbenv bundler on") do |_stdin, _stdout, stderr, wait_thr|
             exit_status = wait_thr.value
             unless exit_status.success?
-              # :nocov:
               puts  "WARNING: could not rbenv bundler on \n #{stderr.read}"
-              # :nocov:
             end
           end
+          # :nocov:
         end
       end
     end
