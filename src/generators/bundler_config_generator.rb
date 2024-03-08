@@ -10,7 +10,17 @@ module Foobara
           end
 
           def foobara_dir
-            super || "../foobara"
+            match = /Set for the current user \([^\)]+\): "([^"]+)"/.match(`bundle config get local.foobara`)
+
+            if match
+              # :nocov:
+              match[1]
+              # :nocov:
+            else
+              # :nocov:
+              super || "../foobara"
+              # :nocov:
+            end
           end
         end
       end
