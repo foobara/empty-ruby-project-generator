@@ -5,14 +5,21 @@ module Foobara
     module EmptyRubyProjectGenerator
       class ProjectConfig < Foobara::Model
         attributes do
+          # This is a bit goofy. Do we need this? Should it default to true?
           has_organization :boolean
+          # This is more analogous to the github organization than it is to the Foobara organization, though often would
+          # be both.
           organization_name :string, :allow_nil
+          # This would be like SomeProjectName for some-project-name.git on github.
           project_name :string, :required
+          # This specifies the module nesting for generated files for this project. It might have prefixes left out of
+          # the project_name. It will default to Org::Project
           full_module_name :string
           description :string, :required
           author_names [:string]
           author_emails [:string]
           homepage_url :string
+          # Probably need a better default such as not licensed.
           license :string, default: "MIT"
         end
 
