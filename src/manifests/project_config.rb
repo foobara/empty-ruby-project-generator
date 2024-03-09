@@ -14,7 +14,6 @@ module Foobara
           author_emails [:string]
           homepage_url :string
           license :string, default: "MIT"
-          foobara_dir :string
         end
 
         attr_accessor :full_module_path,
