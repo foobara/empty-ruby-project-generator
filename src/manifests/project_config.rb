@@ -13,7 +13,7 @@ module Foobara
           # This specifies the module nesting for generated files for this project. It might have prefixes left out of
           # the project_name. It will default to Org::Project
           full_module_name :string
-          description :string, :required
+          description :string, default: "TODO: Add description"
           author_names [:string]
           author_emails [:string]
           homepage_url :string
