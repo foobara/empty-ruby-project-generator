@@ -29,7 +29,6 @@ TODO: Write usage instructions here
 If using Foobara locally, then run the following (TODO: make this no-longer necessary.)
 
 ```bash
-bundle config set local.foobara ../foobara
 bundle config set disable_local_branch_check true
 ```
 

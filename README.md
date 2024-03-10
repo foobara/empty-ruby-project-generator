@@ -27,7 +27,7 @@ TODO: Write usage instructions here
 ## Development
 
 ```bash
-bundle config set local.foobara ../foobara
+bundle config --global local.foobara /path/to/foobara
 bundle config set disable_local_branch_check true
 ```
 
