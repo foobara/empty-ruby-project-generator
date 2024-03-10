@@ -49,6 +49,7 @@ module Foobara
             git_init
             git_add_all
             git_commit
+            github_create_repo
             git_add_remote_origin
             git_branch_main
             push_to_github
@@ -116,7 +117,27 @@ module Foobara
           # :nocov:
         end
 
+        attr_accessor :origin_set, :pushed
+
+        def github_create_repo
+          cmd = "gh repo create --public --push --source=. #{project_config.org_slash_project_kebab}"
+
+          Open3.popen3(cmd) do |_stdin, _stdout, stderr, wait_thr|
+            exit_status = wait_thr.value
+            if exit_status.success?
+              # :nocov:
+              self.origin_set = true
+              self.pushed = true
+              # :nocov:
+            else
+              warn "WARNING: could not #{cmd}"
+            end
+          end
+        end
+
         def git_add_remote_origin
+          return if origin_set
+
           unless system("git remote add origin git@github.com:#{project_config.org_slash_project_kebab}.git")
             # :nocov:
             raise "could not git remote add origin git@github.com:#{project_config.org_slash_project_kebab}.git"
@@ -133,10 +154,12 @@ module Foobara
         end
 
         def push_to_github
+          return if pushed
+
           Open3.popen3("git push -u origin main") do |_stdin, _stdout, stderr, wait_thr|
             exit_status = wait_thr.value
             unless exit_status.success?
-              puts  "WARNING: could not git push -u origin main \n #{stderr.read}"
+              warn "WARNING: could not git push -u origin main \n #{stderr.read}"
             end
           end
         end
@@ -146,7 +169,7 @@ module Foobara
           Open3.popen3("rbenv bundler on") do |_stdin, _stdout, stderr, wait_thr|
             exit_status = wait_thr.value
             unless exit_status.success?
-              puts  "WARNING: could not rbenv bundler on \n #{stderr.read}"
+              warn "WARNING: could not rbenv bundler on \n #{stderr.read}"
             end
           end
           # :nocov:
