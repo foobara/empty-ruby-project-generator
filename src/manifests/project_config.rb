@@ -5,8 +5,6 @@ module Foobara
     module EmptyRubyProjectGenerator
       class ProjectConfig < Foobara::Model
         attributes do
-          # This is a bit goofy. Do we need this? Should it default to true?
-          has_organization :boolean
           # This is more analogous to the github organization than it is to the Foobara organization, though often would
           # be both.
           organization_name :string, :allow_nil
@@ -41,7 +39,6 @@ module Foobara
               homepage_url
               organization_name
               license
-              has_organization
             ]
 
             invalid_keys = attributes.keys - allowed_keys
@@ -58,35 +55,20 @@ module Foobara
           author_emails = attributes[:author_emails]
           homepage_url = attributes[:homepage_url]
           organization_name = attributes[:organization_name]
+          license = attributes[:license] || "MIT"
 
-          has_organization = if attributes.key?(:has_organization)
-                               attributes[:has_organization]
-                             elsif attributes.key?(:organization_name)
-                               organization_name && !organization_name.empty?
-                             else
-                               project_name.include?("::")
-                             end
-
-          project_name_good = organization_name || attributes[:full_module_name]
+          has_organization = organization_name && !organization_name.empty?
 
           organization_name = nil unless has_organization
 
-          license = attributes[:license] || "MIT"
           full_project_name = [*organization_name, project_name].join("::")
           full_project_path = full_project_name.split("::")
           full_module_name = attributes[:full_module_name] || full_project_name
           full_module_path = full_module_name.split("::")
 
-          if has_organization
-            organization_name ||= full_project_path.first
-          end
-
           module_name = full_module_name.gsub(/^#{organization_name}::/, "")
           module_path = module_name.split("::")
 
-          unless project_name_good
-            project_name = full_project_name.gsub(/^#{organization_name}::/, "")
-          end
           project_path = project_name.split("::")
 
           author_names ||= begin

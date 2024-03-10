@@ -14,11 +14,13 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
       project_name:,
       description: "whatever",
       author_names: ["Somebody"],
-      author_emails: ["some@email.com"]
+      author_emails: ["some@email.com"],
+      organization_name:
     )
   end
 
   let(:project_name) { "SomeNamespace::SomeOtherNamespace::FinalThingy" }
+  let(:organization_name) { "SomeOrg" }
   let(:output_directory) { "#{__dir__}/../../empty_ruby_project_test_suite_project_output" }
 
   before do
@@ -34,7 +36,9 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
       expect(outcome).to be_success
 
       expect(command.paths_to_source_code.keys).to include(".github/workflows/ci.yml")
-      expect(command.paths_to_source_code.keys).to include("lib/some_namespace/some_other_namespace_final_thingy.rb")
+      expect(command.paths_to_source_code.keys).to include(
+        "lib/some_org/some_namespace_some_other_namespace_final_thingy.rb"
+      )
       expect(File).to exist("#{output_directory}/ruby-project-generator.json")
     end
 
@@ -44,8 +48,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
           project_name:,
           description: "whatever",
           author_names: ["Somebody"],
-          author_emails: ["some@email.com"],
-          has_organization: false
+          author_emails: ["some@email.com"]
         )
       end
 
@@ -69,7 +72,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
 
       it "constructs a default output directory from the project name" do
         command.cast_and_validate_inputs
-        expect(command.output_directory).to eq("some-namespace/some-other-namespace-final-thingy")
+        expect(command.output_directory).to eq("some-org/some-namespace-some-other-namespace-final-thingy")
       end
     end
   end
