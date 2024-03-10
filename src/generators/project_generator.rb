@@ -32,15 +32,6 @@ module Foobara
           def templates_dir
             "#{__dir__}/../../templates"
           end
-
-          # TODO: promote this up to base project
-          def ==(other)
-            self.class == other.class && project_config == other.project_config
-          end
-
-          def hash
-            project_config.hash
-          end
         end
       end
     end
