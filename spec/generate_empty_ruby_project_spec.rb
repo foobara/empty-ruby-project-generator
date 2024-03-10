@@ -6,7 +6,6 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
   let(:inputs) do
     {
       project_name:,
-      description: "whatever",
       author_names:,
       author_emails:
     }
