@@ -15,7 +15,7 @@ RSpec.configure do |config|
   config.raise_errors_for_deprecations!
 end
 
-Dir["#{__dir__}/support/**/*.rb"].sort.each { |f| require f }
+Dir["#{__dir__}/support/**/*.rb"].each { |f| require f }
 
 require "foobara/spec_helpers/all"
 require "foobara/empty_ruby_project_generator"
