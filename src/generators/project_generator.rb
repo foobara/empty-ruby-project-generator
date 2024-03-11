@@ -9,14 +9,14 @@ module Foobara
               when ProjectConfig
                 [
                   Generators::BinConsoleGenerator,
+                  Generators::BootFinishGenerator,
                   Generators::ChangelogGenerator,
                   Generators::CiYamlGenerator,
-                  Generators::GitignoreGenerator,
                   Generators::GemspecGenerator,
+                  Generators::GitignoreGenerator,
                   Generators::InitialSpecGenerator,
                   Generators::LibGenerator,
                   Generators::LicenseGenerator,
-                  Generators::SpecHelperGenerator,
                   Generators::VersionGenerator
                 ]
               else

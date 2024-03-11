@@ -4,9 +4,9 @@ module Foobara
   module Generators
     module EmptyRubyProjectGenerator
       module Generators
-        class SpecHelperGenerator < ProjectGenerator
+        class BootFinishGenerator < ProjectGenerator
           def template_path
-            ["spec", "spec_helper.rb.erb"]
+            ["boot", "finish.rb.erb"]
           end
         end
       end

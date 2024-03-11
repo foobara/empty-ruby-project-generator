@@ -17,7 +17,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
   it "generates an empty ruby project" do
     expect(outcome).to be_success
 
-    expect(result["spec/spec_helper.rb"]).to include('require "namespace1/namespace1/namespace3/namespace4"')
+    expect(result["spec/spec_helper.rb"]).to include('require_relative "../boot/finish"')
   end
 
   context "with all options" do
@@ -38,7 +38,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
     it "generates an empty ruby project using the given options" do
       expect(outcome).to be_success
 
-      expect(result["spec/spec_helper.rb"]).to include('require "namespace1/namespace1/namespace3/namespace4"')
+      expect(result["spec/spec_helper.rb"]).to include('require_relative "../boot/finish"')
     end
   end
 end
