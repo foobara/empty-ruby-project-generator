@@ -20,8 +20,6 @@ module Foobara
 
         def execute
           generate_file_contents
-          generate_generated_files_json
-          delete_old_files_if_needed
           write_all_files_to_disk
           run_post_generation_tasks
 
