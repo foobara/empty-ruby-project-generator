@@ -25,7 +25,7 @@ module Foobara
           write_all_files_to_disk
           run_post_generation_tasks
 
-          stats
+          output
         end
 
         def output_directory
@@ -37,6 +37,7 @@ module Foobara
         end
 
         def generate_file_contents
+          puts "generating..."
           # TODO: just pass this in as the inputs instead of the command??
           self.paths_to_source_code = run_subcommand!(GenerateEmptyRubyProject, project_config.attributes)
         end
@@ -58,6 +59,7 @@ module Foobara
         end
 
         def bundle_install
+          puts "bundling..."
           Bundler.with_unbundled_env do
             Open3.popen3("bundle install") do |_stdin, _stdout, stderr, wait_thr|
               exit_status = wait_thr.value
@@ -71,6 +73,7 @@ module Foobara
         end
 
         def rubocop_autocorrect
+          puts "linting..."
           Open3.popen3("bundle exec rubocop -A") do |_stdin, _stdout, stderr, wait_thr|
             exit_status = wait_thr.value
             unless exit_status.success?
@@ -90,10 +93,15 @@ module Foobara
         end
 
         def git_init
-          unless system("git init")
-            # :nocov:
-            raise "could not git init"
-            # :nocov:
+          cmd = "git init"
+
+          Open3.popen3(cmd) do |_stdin, _stdout, stderr, wait_thr|
+            exit_status = wait_thr.value
+            unless exit_status.success?
+              # :nocov:
+              raise "could not #{cmd}\n#{stderr.read}"
+              # :nocov:
+            end
           end
         end
 
@@ -120,9 +128,11 @@ module Foobara
         attr_accessor :origin_set, :pushed
 
         def github_create_repo
+          puts "pushing to github..."
+
           cmd = "gh repo create --public --push --source=. #{project_config.org_slash_project_kebab}"
 
-          Open3.popen3(cmd) do |_stdin, _stdout, stderr, wait_thr|
+          Open3.popen3(cmd) do |_stdin, _stdout, _stderr, wait_thr|
             exit_status = wait_thr.value
             if exit_status.success?
               # :nocov:
@@ -173,6 +183,10 @@ module Foobara
             end
           end
           # :nocov:
+        end
+
+        def output
+          "\nDone. #{stats}"
         end
       end
     end
