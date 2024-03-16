@@ -1,13 +1,13 @@
 GIT
   remote: foobara
-  revision: f97443e06569b022bae15c2b8c1b0c136fc3edf0
+  revision: 9d507ed411aca4dcc747c0f61501c9b14cde3b13
   branch: main
   specs:
     foobara (0.0.1)
 
 GIT
   remote: https://github.com/foobara/files-generator.git
-  revision: 8e9439014484892bb49a1d720399d924f853baea
+  revision: b450ff1d27bc1570f448c95dcd4a5adf71224aca
   specs:
     foobara-files-generator (0.1.0)
 
