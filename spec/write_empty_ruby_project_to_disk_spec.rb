@@ -11,16 +11,14 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
   end
   let(:project_config) do
     Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(
-      project_name:,
+      name:,
       description: "whatever",
       author_names: ["Somebody"],
-      author_emails: ["some@email.com"],
-      organization_name:
+      author_emails: ["some@email.com"]
     )
   end
 
-  let(:project_name) { "SomeNamespace::SomeOtherNamespace::FinalThingy" }
-  let(:organization_name) { "SomeOrg" }
+  let(:name) { "some-org/some-namespace_some-other-namespace_final-thingy" }
   let(:output_directory) { "#{__dir__}/../../empty_ruby_project_test_suite_project_output" }
 
   before do
@@ -42,9 +40,10 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
     end
 
     context "with no #organization_name" do
+      let(:name) { "some-namespace_some-other-namespace_final-thingy" }
       let(:project_config) do
         Foobara::Generators::EmptyRubyProjectGenerator::ProjectConfig.new(
-          project_name:,
+          name:,
           description: "whatever",
           author_names: ["Somebody"],
           author_emails: ["some@email.com"]

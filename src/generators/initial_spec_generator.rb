@@ -10,7 +10,7 @@ module Foobara
           end
 
           def target_path
-            *path, file = full_module_path.map { |part| Util.underscore(part) }
+            *path, file = full_project_path.map { |part| Util.underscore(part) }
 
             file = "#{file}_spec.rb"
 
