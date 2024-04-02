@@ -7,4 +7,4 @@ if ENV["FOOBARA_ENV"] == "development" || ENV["FOOBARA_ENV"] == "test"
   require "pry-byebug"
 end
 
-require_relative "dotenv"
+require_relative "config"
