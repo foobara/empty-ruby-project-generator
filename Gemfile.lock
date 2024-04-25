@@ -1,6 +1,6 @@
 GIT
   remote: foobara
-  revision: 4321c4c70abf92d4d690ae086e0b3c5df4499c9b
+  revision: 9d258143cf0a58a3bd7a63c89443dff0fc45ef14
   branch: main
   specs:
     foobara (0.0.1)
@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/foobara/sh-cli-connector.git
-  revision: 4d7b47b9fe038983b1a999fb415509eb4e3511c2
+  revision: caf838a83c38501ca8d6e1181f103c2bbabd3fd3
   specs:
     foobara-sh-cli-connector (0.1.0)
 
@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/foobara/util.git
-  revision: 3773dcb765bc70dea2b14cfe179ed3849d5126c2
+  revision: 7459f1000de349ca3ba56122dc66c1a81dcf6c4e
   specs:
     foobara-util (0.1.0)
 

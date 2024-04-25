@@ -1,3 +1,5 @@
+require_relative "remote" if File.exist?("#{__dir__}/remote.rb")
+
 require "<%= project_lib_file_path %>"
 
 Dir["#{__dir__}/*.rb"].each { |f| require f }
