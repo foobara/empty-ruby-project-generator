@@ -1,6 +1,6 @@
 GIT
   remote: foobara
-  revision: eefeb49f8341ca80cdaa17db53697215e5270bfd
+  revision: 4321c4c70abf92d4d690ae086e0b3c5df4499c9b
   branch: main
   specs:
     foobara (0.0.1)
@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/foobara/sh-cli-connector.git
-  revision: 36e164ac2c9c8874c033c355ec43168fd48f9b7a
+  revision: 4d7b47b9fe038983b1a999fb415509eb4e3511c2
   specs:
     foobara-sh-cli-connector (0.1.0)
 
@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/foobara/util.git
-  revision: ebf430ec00a389ec11e7f8e233131b1b36a1b6f1
+  revision: 3773dcb765bc70dea2b14cfe179ed3849d5126c2
   specs:
     foobara-util (0.1.0)
 
@@ -66,7 +66,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    json (2.7.1)
+    json (2.7.2)
     language_server-protocol (3.17.0.3)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -111,7 +111,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.0)
-    rubocop (1.62.1)
+    rubocop (1.63.3)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -130,12 +130,12 @@ GEM
       rubocop (~> 1.41)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    rubocop-rspec (2.28.0)
+    rubocop-rspec (2.29.1)
       rubocop (~> 1.40)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
       rubocop-rspec_rails (~> 2.28)
-    rubocop-rspec_rails (2.28.2)
+    rubocop-rspec_rails (2.28.3)
       rubocop (~> 1.40)
     ruby-progressbar (1.13.0)
     shellany (0.0.1)

@@ -90,7 +90,8 @@ module Foobara
         end
 
         def author_names
-          @author_names ||= begin
+          # TODO: implement #[] or move it up to Model from Entity if it exists there.
+          @author_names ||= read_attribute(:author_names) || begin
             # TODO: dump a git config file in CI so we don't have to skip this
             # :nocov:
             name = `git config --get user.name`
@@ -105,7 +106,7 @@ module Foobara
         end
 
         def author_emails
-          @author_emails ||= begin
+          @author_emails ||= read_attribute(:author_emails) || begin
             # :nocov:
             email = `git config --get user.email`
 
