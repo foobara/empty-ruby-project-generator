@@ -1,5 +1,24 @@
-require_relative "remote" if File.exist?("#{__dir__}/remote.rb")
+first = [
+  "remote.rb"
+]
+
+last = %w[
+  async.rb
+  cron.rb
+]
+
+skip = ["start.rb", "finish.rb", *first, *last]
+
+first.each { |f| require_relative f }
 
 require "<%= project_lib_file_path %>"
 
-Dir["#{__dir__}/*.rb"].each { |f| require f }
+Dir.entries(__dir__).each do |boot_file|
+  next unless boot_file.end_with?(".rb")
+  next if skip.include?(boot_file)
+  next unless File.exist?("#{__dir__}/#{boot_file}")
+
+  require_relative boot_file
+end
+
+last.each { |f| require_relative f }
