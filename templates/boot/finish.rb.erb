@@ -9,7 +9,7 @@ last = %w[
 
 skip = ["start.rb", "finish.rb", *first, *last]
 
-first.each { |f| require_relative f }
+first.each { |f| require_relative f if File.exist?("#{__dir__}/#{f}") }
 
 require "<%= project_lib_file_path %>"
 
@@ -21,4 +21,4 @@ Dir.entries(__dir__).each do |boot_file|
   require_relative boot_file
 end
 
-last.each { |f| require_relative f }
+last.each { |f| require_relative f if File.exist?("#{__dir__}/#{f}") }
