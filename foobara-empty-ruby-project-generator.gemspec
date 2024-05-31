@@ -22,6 +22,8 @@ Gem::Specification.new do |spec|
     "LICENSE.txt"
   ] + Find.find("templates/").select { |f| File.file?(f) }
 
+  spec.add_dependency "foobara"
+
   spec.require_paths = ["lib"]
   spec.metadata["rubygems_mfa_required"] = "true"
 end
