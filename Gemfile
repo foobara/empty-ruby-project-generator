@@ -3,16 +3,10 @@ ruby File.read("#{__dir__}/.ruby-version")
 
 gemspec
 
-gem "foobara-files-generator", github: "foobara/files-generator"
-# gem "foobara-files-generator", path: "../files-generator"
-# gem "foobara-util", path: "../util"
-
 gem "rake"
 
 group :development do
   gem "foobara-rubocop-rules"
-  gem "foobara-sh-cli-connector", github: "foobara/sh-cli-connector"
-  # gem "foobara-sh-cli-connector", path: "../sh-cli-connector"
   gem "guard-rspec"
   gem "rubocop-rake"
   gem "rubocop-rspec"

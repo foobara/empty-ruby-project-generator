@@ -1,4 +1,4 @@
-require_relative "src/version"
+require_relative "version"
 require "find"
 
 Gem::Specification.new do |spec|
@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   ] + Find.find("templates/").select { |f| File.file?(f) }
 
   spec.add_dependency "foobara"
+  spec.add_dependency "foobara-files-generator"
 
   spec.require_paths = ["lib"]
   spec.metadata["rubygems_mfa_required"] = "true"

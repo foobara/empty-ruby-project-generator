@@ -1,21 +1,9 @@
-GIT
-  remote: https://github.com/foobara/files-generator.git
-  revision: 13507d8f1c8870b9234d34a869b039cca6de0aa0
-  specs:
-    foobara-files-generator (0.1.0)
-      foobara
-
-GIT
-  remote: https://github.com/foobara/sh-cli-connector.git
-  revision: 5d7c54a1cac8b500bb7e7b052f0e7c4d2672dc35
-  specs:
-    foobara-sh-cli-connector (0.1.0)
-
 PATH
   remote: .
   specs:
     foobara-empty-ruby-project-generator (0.1.0)
       foobara
+      foobara-files-generator
 
 GEM
   remote: https://rubygems.org/
@@ -25,10 +13,12 @@ GEM
     coderay (1.1.3)
     diff-lcs (1.5.1)
     docile (1.4.0)
-    ffi (1.16.3)
+    ffi (1.17.0-x86_64-linux-gnu)
     foobara (0.0.1)
       foobara-util
-    foobara-rubocop-rules (0.0.2)
+    foobara-files-generator (0.0.1)
+      foobara
+    foobara-rubocop-rules (0.0.3)
       rubocop
       rubocop-rspec
     foobara-spec-helpers (0.0.3)
@@ -60,8 +50,8 @@ GEM
     notiffany (0.1.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    parallel (1.24.0)
-    parser (3.3.2.0)
+    parallel (1.25.1)
+    parser (3.3.3.0)
       ast (~> 2.4.1)
       racc
     pry (0.14.2)
@@ -77,15 +67,15 @@ GEM
     rb-inotify (0.11.1)
       ffi (~> 1.0)
     regexp_parser (2.9.2)
-    rexml (3.2.8)
-      strscan (>= 3.0.9)
+    rexml (3.3.0)
+      strscan
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
       rspec-mocks (~> 3.13.0)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.0)
+    rspec-expectations (3.13.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-its (1.3.0)
@@ -108,19 +98,10 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.31.3)
       parser (>= 3.3.1.0)
-    rubocop-capybara (2.20.0)
-      rubocop (~> 1.41)
-    rubocop-factory_bot (2.25.1)
-      rubocop (~> 1.41)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    rubocop-rspec (2.29.2)
-      rubocop (~> 1.40)
-      rubocop-capybara (~> 2.17)
-      rubocop-factory_bot (~> 2.22)
-      rubocop-rspec_rails (~> 2.28)
-    rubocop-rspec_rails (2.28.3)
-      rubocop (~> 1.40)
+    rubocop-rspec (3.0.1)
+      rubocop (~> 1.61)
     ruby-progressbar (1.13.0)
     shellany (0.0.1)
     simplecov (0.22.0)
@@ -138,9 +119,7 @@ PLATFORMS
 
 DEPENDENCIES
   foobara-empty-ruby-project-generator!
-  foobara-files-generator!
   foobara-rubocop-rules
-  foobara-sh-cli-connector!
   foobara-spec-helpers
   guard-rspec
   pry
