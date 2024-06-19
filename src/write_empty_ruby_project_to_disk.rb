@@ -58,7 +58,7 @@ module Foobara
 
         def bundle_install
           puts "bundling..."
-          Bundler.with_unbundled_env do
+          do_it = proc do
             Open3.popen3("bundle install") do |_stdin, _stdout, stderr, wait_thr|
               exit_status = wait_thr.value
               unless exit_status.success?
@@ -67,6 +67,12 @@ module Foobara
                 # :nocov:
               end
             end
+          end
+
+          if Bundler.respond_to?(:with_unbundled_env)
+            Bundler.with_unbundled_env(&do_it)
+          else
+            do_it.call
           end
         end
 
