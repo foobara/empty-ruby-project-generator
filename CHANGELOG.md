@@ -1,3 +1,7 @@
+## [0.0.3] - 2024-06-23
+
+- Remove a bunch of unnecessary gems from templates/Gemfile
+
 ## [0.0.2] - 2024-06-19
 
 - Add missing templates to gem

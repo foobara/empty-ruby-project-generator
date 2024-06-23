@@ -20,14 +20,13 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = spec.homepage
   spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/main/CHANGELOG.md"
 
-  # TODO: why not "templates/**/*" ?
   spec.files = Dir[
     "lib/**/*",
     "src/**/*",
-    "templates/**/*",
     "LICENSE*.txt",
     "README.md",
     "CHANGELOG.md"
+    # NOTE: We can't just do "templates/**/*" because there can be hidden files/directories which are skipped
   ] + Find.find("templates/").select { |f| File.file?(f) }
 
   spec.add_dependency "foobara"

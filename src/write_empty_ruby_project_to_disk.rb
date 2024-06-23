@@ -72,7 +72,9 @@ module Foobara
           if Bundler.respond_to?(:with_unbundled_env)
             Bundler.with_unbundled_env(&do_it)
           else
+            # :nocov:
             do_it.call
+            # :nocov:
           end
         end
 
