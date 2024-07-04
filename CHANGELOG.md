@@ -1,3 +1,7 @@
+## [0.0.4] - 2024-07-04
+
+- Remove unnecessary foobara gem wiring up code from templates/.github
+
 ## [0.0.3] - 2024-06-23
 
 - Remove a bunch of unnecessary gems from templates/Gemfile
