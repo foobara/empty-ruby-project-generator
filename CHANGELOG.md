@@ -1,3 +1,7 @@
+## [0.0.7] - 2024-11-01
+
+- Do not automatically push to github via gh
+
 ## [0.0.5] - 2024-07-08
 
 - Remove unnecessary foobara gem wiring up code from templates/.github

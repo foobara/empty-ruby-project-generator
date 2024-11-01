@@ -122,10 +122,10 @@ module Foobara
         def git_commit
           # TODO: set author/name with git config in CI so we don't have to skip this
           # :nocov:
-          Open3.popen3("git commit -m 'Initial commit'") do |_stdin, _stdout, stderr, wait_thr|
+          Open3.popen3("git commit -m 'Initial commit'") do |_stdin, stdout, stderr, wait_thr|
             exit_status = wait_thr.value
             unless exit_status.success?
-              raise "could not git commit -m 'Initial commit'. #{stderr.read}"
+              raise "could not git commit -m 'Initial commit'. OUTPUT\n#{stdout.read}\nERROR:#{stderr.read}"
             end
           end
           # :nocov:
@@ -136,7 +136,7 @@ module Foobara
         def github_create_repo
           puts "pushing to github..."
 
-          cmd = "gh repo create --public --push --source=. #{project_config.org_slash_project_kebab}"
+          cmd = "gh repo create --public --source=. #{project_config.org_slash_project_kebab}"
 
           Open3.popen3(cmd) do |_stdin, _stdout, _stderr, wait_thr|
             exit_status = wait_thr.value
