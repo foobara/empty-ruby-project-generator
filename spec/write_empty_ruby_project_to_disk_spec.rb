@@ -19,7 +19,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
   end
 
   let(:name) { "some-org/some-namespace_some-other-namespace_final-thingy" }
-  let(:output_directory) { "#{__dir__}/../../empty_ruby_project_test_suite_project_output" }
+  let(:output_directory) { "#{__dir__}/../tmp/empty_ruby_project_test_suite_project_output" }
 
   before do
     # rubocop:disable RSpec/AnyInstance
@@ -55,6 +55,68 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
 
         expect(command.paths_to_source_code.keys).to include(".github/workflows/ci.yml")
         expect(command.paths_to_source_code.keys).to include("lib/some_namespace_some_other_namespace_final_thingy.rb")
+      end
+    end
+
+    context "with ExtractRepo support" do
+      let(:repo_path) do
+        "#{__dir__}/fixtures/test_repo"
+      end
+      let(:inputs) do
+        {
+          project_config:,
+          output_directory:,
+          extract: {
+            repo: repo_path,
+            delete_extracted:,
+            paths:
+          }
+        }
+      end
+      let(:delete_extracted) { true }
+      let(:paths) { %w[new_name] }
+
+      def inflate_test_repo
+        Dir.chdir(File.dirname(repo_path)) do
+          # :nocov:
+          unless Dir.exist?("extract_repo")
+            `tar zxvf test_repo.tar.gz`
+            unless $CHILD_STATUS.exitstatus == 0
+              raise "Failed to inflate test repo"
+            end
+          end
+          # :nocov:
+        end
+      end
+
+      def rm_test_repo
+        Dir.chdir(File.dirname(repo_path)) do
+          # :nocov:
+          if Dir.exist?("extract_repo")
+            `rm -rf extract_repo`
+            unless $CHILD_STATUS.exitstatus == 0
+              raise "Failed to remove test repo"
+            end
+          end
+          # :nocov:
+        end
+      end
+
+      before do
+        inflate_test_repo
+        rm_test_repo
+      end
+
+      it "generates a new repo with a new project plus the extracted files" do
+        expect(outcome).to be_success
+
+        expect(command.paths_to_source_code.keys).to include(".github/workflows/ci.yml")
+        expect(command.paths_to_source_code.keys).to include(
+          "lib/some_org/some_namespace_some_other_namespace_final_thingy.rb"
+        )
+        Dir.chdir output_directory do
+          expect(File).to exist("new_name/new_name.txt")
+        end
       end
     end
   end

@@ -1,3 +1,7 @@
+## [0.0.8] - 2024-11-07
+
+- Add ability to extract code and git history from one repository into the new project
+
 ## [0.0.7] - 2024-11-01
 
 - Do not automatically push to github via gh

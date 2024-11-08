@@ -13,3 +13,5 @@
 /.idea/
 /.env.*.local
 /.env.local
+
+/spec/fixtures/test_repo/

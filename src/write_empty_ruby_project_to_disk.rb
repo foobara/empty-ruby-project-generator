@@ -1,4 +1,5 @@
 require_relative "generate_empty_ruby_project"
+require "extract_repo"
 
 module Foobara
   module Generators
@@ -10,20 +11,44 @@ module Foobara
           end
         end
 
-        depends_on GenerateEmptyRubyProject
+        depends_on GenerateEmptyRubyProject,
+                   ::ExtractRepo
 
         inputs do
+          extract ExtractInputs
           project_config ProjectConfig, :required
           # TODO: should be able to delete this and inherit it
           output_directory :string
         end
 
         def execute
+          create_output_directory_if_needed
+          if extract_from_another_repo?
+            extract_from_another_repo
+          end
           generate_file_contents
           write_all_files_to_disk
           run_post_generation_tasks
 
           output
+        end
+
+        def create_output_directory_if_needed
+          FileUtils.mkdir_p output_directory
+        end
+
+        def extract_from_another_repo?
+          !!extract
+        end
+
+        def extract_from_another_repo
+          run_subcommand!(
+            ExtractRepo,
+            repo_url: extract.repo,
+            paths: extract.paths,
+            delete_extracted: extract.delete_extracted,
+            output_path: output_directory
+          )
         end
 
         def output_directory
@@ -45,7 +70,7 @@ module Foobara
             bundle_install
             make_bin_files_executable
             rubocop_autocorrect
-            git_init
+            git_init unless extract_from_another_repo?
             git_add_all
             git_commit
             github_create_repo
@@ -112,17 +137,22 @@ module Foobara
         end
 
         def git_add_all
-          unless system("git add .")
-            # :nocov:
-            raise "could not git add ."
-            # :nocov:
+          cmd = "git add ."
+
+          Open3.popen3(cmd) do |_stdin, _stdout, stderr, wait_thr|
+            exit_status = wait_thr.value
+            unless exit_status.success?
+              # :nocov:
+              raise "could not #{cmd}\n#{stderr.read}"
+              # :nocov:
+            end
           end
         end
 
         def git_commit
           # TODO: set author/name with git config in CI so we don't have to skip this
           # :nocov:
-          Open3.popen3("git commit -m 'Initial commit'") do |_stdin, stdout, stderr, wait_thr|
+          Open3.popen3("git commit -m 'Create ruby project files'") do |_stdin, stdout, stderr, wait_thr|
             exit_status = wait_thr.value
             unless exit_status.success?
               raise "could not git commit -m 'Initial commit'. OUTPUT\n#{stdout.read}\nERROR:#{stderr.read}"
@@ -136,7 +166,7 @@ module Foobara
         def github_create_repo
           puts "pushing to github..."
 
-          cmd = "gh repo create --public --source=. #{project_config.org_slash_project_kebab}"
+          cmd = "gh repo create --public #{project_config.org_slash_project_kebab}"
 
           Open3.popen3(cmd) do |_stdin, _stdout, _stderr, wait_thr|
             exit_status = wait_thr.value
