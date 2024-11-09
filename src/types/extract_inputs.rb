@@ -5,7 +5,7 @@ module Foobara
         attributes do
           repo :string, :required
           paths [:string], :required
-          delete_extracted :boolean, default: false
+          delete_extracted :boolean, default: true
         end
       end
     end
