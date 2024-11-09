@@ -13,6 +13,12 @@ jobs:
     name: RSpec and Rubocop
     timeout-minutes: 3
     steps:
+      - name: Install git-filter-repo
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: git-filter-repo
+          version: 1.0
+          execute_install_scripts: true
       - uses: actions/checkout@v3
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
