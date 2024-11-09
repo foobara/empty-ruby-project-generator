@@ -166,7 +166,7 @@ module Foobara
         def github_create_repo
           puts "pushing to github..."
 
-          cmd = "gh repo create --public #{project_config.org_slash_project_kebab}"
+          cmd = "gh repo create --private #{project_config.org_slash_project_kebab}"
 
           Open3.popen3(cmd) do |_stdin, _stdout, _stderr, wait_thr|
             exit_status = wait_thr.value
