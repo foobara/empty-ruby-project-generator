@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    foobara-empty-ruby-project-generator (0.0.8)
+    foobara-empty-ruby-project-generator (0.0.9)
       extract-repo
       foobara
       foobara-files-generator
@@ -18,7 +18,7 @@ GEM
       foobara
       foobara-sh-cli-connector
     ffi (1.17.0-x86_64-linux-gnu)
-    foobara (0.0.12)
+    foobara (0.0.13)
       foobara-util
     foobara-files-generator (0.0.3)
       foobara
@@ -99,7 +99,7 @@ GEM
       rubocop-ast (>= 1.32.2, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.34.1)
+    rubocop-ast (1.36.1)
       parser (>= 3.3.1.0)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)

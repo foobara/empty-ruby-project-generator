@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = <%= description.inspect %>
   spec.homepage = <%= homepage_url.inspect %>
-  spec.license = <%= license.inspect %>
+  spec.license = <%= (license || "None specified yet").inspect %>
   spec.required_ruby_version = ">= #{File.read("#{__dir__}/.ruby-version")}"
 
   spec.metadata["homepage_uri"] = spec.homepage

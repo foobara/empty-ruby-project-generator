@@ -1,3 +1,7 @@
+## [0.0.9] - 2024-11-13
+
+- Allow choosing different licenses: MIT, Apache-2.0, MPL-2.0, Apache-2.0 OR MIT, none
+
 ## [0.0.8] - 2024-11-07
 
 - Add ability to extract code and git history from one repository into the new project

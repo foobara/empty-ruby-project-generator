@@ -20,7 +20,7 @@ module Foobara
           author_emails [:string]
           homepage_url :string
           # Probably need a better default such as not licensed.
-          license :string, default: "None specified yet"
+          license :string, :allow_nil, one_of: ["MIT", "Apache-2.0", "MPL-2.0", "Apache-2.0 OR MIT"]
         end
 
         def kebab_case_project_name
