@@ -6,7 +6,7 @@ module Foobara
       module Generators
         class VersionGenerator < ProjectGenerator
           def template_path
-            ["src", "version.rb.erb"]
+            ["version.rb.erb"]
           end
         end
       end
