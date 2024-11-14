@@ -1,3 +1,7 @@
+## [0.0.10] - 2024-11-14
+
+- Create an empty module
+
 ## [0.0.9] - 2024-11-13
 
 - Allow choosing different licenses: MIT, Apache-2.0, MPL-2.0, Apache-2.0 OR MIT, none

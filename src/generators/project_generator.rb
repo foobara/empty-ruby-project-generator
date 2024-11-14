@@ -14,6 +14,7 @@ module Foobara
                   Generators::CiYamlGenerator,
                   Generators::GemspecGenerator,
                   Generators::GitignoreGenerator,
+                  Generators::InitialModuleGenerator,
                   Generators::InitialSpecGenerator,
                   Generators::LibGenerator,
                   Generators::LicenseGenerator,
