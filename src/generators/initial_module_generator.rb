@@ -18,7 +18,7 @@ module Foobara
           end
 
           def module_path
-            full_project_path.map { |part| Util.classify(part) }
+            full_project_path
           end
         end
       end

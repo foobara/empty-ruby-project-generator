@@ -127,7 +127,7 @@ module Foobara
 
         def kebab_to_module_path(kebab)
           if kebab
-            kebab.split("_").map { |part| Util.classify(part.gsub("-", "_")) }
+            kebab.split("_").map { |part| Util.classify(part) }
           else
             []
           end

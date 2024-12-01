@@ -1,3 +1,7 @@
+## [0.0.11] - 2024-11-30
+
+- Fix initial module naming bug
+
 ## [0.0.10] - 2024-11-14
 
 - Create an empty module
