@@ -161,8 +161,6 @@ module Foobara
           # :nocov:
         end
 
-        attr_accessor :origin_set, :pushed
-
         def github_create_repo
           puts "pushing to github..."
 
@@ -170,20 +168,13 @@ module Foobara
 
           Open3.popen3(cmd) do |_stdin, _stdout, _stderr, wait_thr|
             exit_status = wait_thr.value
-            if exit_status.success?
-              # :nocov:
-              self.origin_set = true
-              self.pushed = true
-              # :nocov:
-            else
+            unless exit_status.success?
               warn "WARNING: could not #{cmd}"
             end
           end
         end
 
         def git_add_remote_origin
-          return if origin_set
-
           unless system("git remote add origin git@github.com:#{project_config.org_slash_project_kebab}.git")
             # :nocov:
             raise "could not git remote add origin git@github.com:#{project_config.org_slash_project_kebab}.git"
@@ -200,8 +191,6 @@ module Foobara
         end
 
         def push_to_github
-          return if pushed
-
           Open3.popen3("git push -u origin main") do |_stdin, _stdout, stderr, wait_thr|
             exit_status = wait_thr.value
             unless exit_status.success?

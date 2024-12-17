@@ -1,3 +1,7 @@
+## [0.0.11] - 2024-12-16
+
+- Fix bug preventing setting origin remote and pushing initial comit to github
+
 ## [0.0.11] - 2024-11-30
 
 - Fix initial module naming bug
