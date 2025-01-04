@@ -49,7 +49,7 @@ module Foobara
 
             case licenses.size
             when 1
-              "This project is dual licensed under the #{licenses.first} license."
+              "This project is licensed under the #{licenses.first} license."
             when 2
               "This project is dual licensed under your choice of the " \
               "#{licenses.first} license and the #{licenses.last} license."

@@ -18,6 +18,7 @@ module Foobara
                   Generators::InitialSpecGenerator,
                   Generators::LibGenerator,
                   Generators::LicenseGenerator,
+                  Generators::ReadmeGenerator,
                   Generators::VersionGenerator
                 ]
               else
