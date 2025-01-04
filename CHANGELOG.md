@@ -1,4 +1,9 @@
-## [0.0.11] - 2024-12-16
+## [0.0.13] - 2025-01-03
+
+- Bump to Ruby 3.4.1
+- Fix various bugs resulting in incorrect license information
+
+## [0.0.12] - 2024-12-16
 
 - Fix bug preventing setting origin remote and pushing initial comit to github
 
