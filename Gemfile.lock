@@ -13,25 +13,25 @@ GEM
     bigdecimal (3.1.9)
     byebug (11.1.3)
     coderay (1.1.3)
-    diff-lcs (1.5.1)
+    diff-lcs (1.6.0)
     docile (1.4.1)
-    extract-repo (0.0.8)
+    extract-repo (0.0.9)
       foobara
       foobara-sh-cli-connector
     ffi (1.17.1-x86_64-linux-gnu)
-    foobara (0.0.47)
+    foobara (0.0.57)
       bigdecimal
       foobara-util
-    foobara-files-generator (0.0.3)
+    foobara-files-generator (0.0.5)
       foobara
-    foobara-rubocop-rules (0.0.5)
+    foobara-rubocop-rules (0.0.7)
       rubocop
       rubocop-rspec
     foobara-sh-cli-connector (0.0.10)
       foobara
-    foobara-spec-helpers (0.0.3)
+    foobara-spec-helpers (0.0.4)
       foobara-util
-    foobara-util (0.0.8)
+    foobara-util (0.0.11)
     formatador (1.1.0)
     guard (2.19.1)
       formatador (>= 0.2.4)
@@ -49,12 +49,13 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    json (2.9.1)
-    language_server-protocol (3.17.0.3)
+    json (2.10.1)
+    language_server-protocol (3.17.0.4)
+    lint_roller (1.1.0)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    logger (1.6.4)
+    logger (1.6.6)
     lumberjack (1.2.10)
     method_source (1.1.0)
     nenv (0.3.0)
@@ -63,7 +64,7 @@ GEM
       shellany (~> 0.0)
     ostruct (0.6.1)
     parallel (1.26.3)
-    parser (3.3.6.0)
+    parser (3.3.7.1)
       ast (~> 2.4.1)
       racc
     pry (0.14.2)
@@ -83,7 +84,7 @@ GEM
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
       rspec-mocks (~> 3.13.0)
-    rspec-core (3.13.2)
+    rspec-core (3.13.3)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.3)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -95,22 +96,25 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.2)
-    rubocop (1.69.2)
+    rubocop (1.72.2)
       json (~> 2.3)
-      language_server-protocol (>= 3.17.0)
+      language_server-protocol (~> 3.17.0.2)
+      lint_roller (~> 1.1.0)
       parallel (~> 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
-      rubocop-ast (>= 1.36.2, < 2.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.37.0)
+    rubocop-ast (1.38.0)
       parser (>= 3.3.1.0)
-    rubocop-rake (0.6.0)
-      rubocop (~> 1.0)
-    rubocop-rspec (3.3.0)
-      rubocop (~> 1.61)
+    rubocop-rake (0.7.1)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.72.1)
+    rubocop-rspec (3.5.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
     ruby-progressbar (1.13.0)
     shellany (0.0.1)
     simplecov (0.22.0)
@@ -120,7 +124,7 @@ GEM
     simplecov-html (0.13.1)
     simplecov_json_formatter (0.1.4)
     thor (1.3.2)
-    unicode-display_width (3.1.3)
+    unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
 
@@ -142,7 +146,7 @@ DEPENDENCIES
   simplecov
 
 RUBY VERSION
-   ruby 3.4.1p0
+   ruby 3.4.2p28
 
 BUNDLED WITH
    2.4.14
