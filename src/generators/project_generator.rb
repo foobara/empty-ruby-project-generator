@@ -13,6 +13,7 @@ module Foobara
                   Generators::ChangelogGenerator,
                   Generators::CiYamlGenerator,
                   Generators::GemspecGenerator,
+                  Generators::GemfileGenerator,
                   Generators::GitignoreGenerator,
                   Generators::InitialModuleGenerator,
                   Generators::InitialSpecGenerator,
