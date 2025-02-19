@@ -1,3 +1,10 @@
+## [0.0.14] - 2025-02-19
+
+- Bump Ruby to 3.4.2
+- Write the current ruby version to .ruby-version.erb instead of a hard-coded value
+- Fix irb gem deprecation warnings
+- Add MINIMUM_RUBY_VERSION to version.rb.erb and use it in .gemspec.erb and Gemfile.erb
+
 ## [0.0.13] - 2025-01-03
 
 - Bump to Ruby 3.4.1

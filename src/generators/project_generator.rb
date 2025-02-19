@@ -20,6 +20,7 @@ module Foobara
                   Generators::LibGenerator,
                   Generators::LicenseGenerator,
                   Generators::ReadmeGenerator,
+                  Generators::RubyVersionGenerator,
                   Generators::VersionGenerator
                 ]
               else
