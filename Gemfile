@@ -6,7 +6,7 @@ gemspec
 gem "rake"
 
 group :development do
-  gem "foobara-rubocop-rules"
+  gem "foobara-rubocop-rules", "~> 0.0.1"
   gem "guard-rspec"
   gem "rubocop-rake"
   gem "rubocop-rspec"
@@ -18,7 +18,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "foobara-spec-helpers"
+  gem "foobara-spec-helpers", "~> 0.0.1"
   gem "rspec"
   gem "rspec-its"
   gem "simplecov"

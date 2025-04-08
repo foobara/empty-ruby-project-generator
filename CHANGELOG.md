@@ -1,3 +1,7 @@
+## [0.0.15] - 2025-04-08
+
+- Improve generated README.md
+
 ## [0.0.14] - 2025-02-19
 
 - Bump Ruby to 3.4.2

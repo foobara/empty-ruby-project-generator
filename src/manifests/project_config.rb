@@ -31,6 +31,10 @@ module Foobara
           Util.kebab_case(full_project_path.join)
         end
 
+        def gem_name
+          kebab_case_full_project_name
+        end
+
         def org_slash_project_kebab(organization_name = self.organization_name, project_name = self.project_name)
           org_part = Util.kebab_case(organization_name)&.gsub("::", "-")
           project_part = Util.kebab_case(project_name).gsub("::", "-")
@@ -120,7 +124,11 @@ module Foobara
         end
 
         def homepage_url
-          @homepage_url ||= "https://github.com/#{org_slash_project_kebab(organization_name, project_module_name)}"
+          github_url
+        end
+
+        def github_url
+          @github_url ||= "https://github.com/#{org_slash_project_kebab(organization_name, project_module_name)}"
         end
 
         private
