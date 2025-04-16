@@ -44,7 +44,7 @@ module Foobara
         def extract_from_another_repo
           run_subcommand!(
             ExtractRepo,
-            repo_url: extract.repo,
+            repo_url_or_path: extract.repo,
             paths: extract.paths,
             delete_extracted: extract.delete_extracted,
             output_path: output_directory
