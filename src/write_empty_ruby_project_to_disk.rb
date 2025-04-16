@@ -105,13 +105,17 @@ module Foobara
 
         def rubocop_autocorrect
           puts "linting..."
-          Open3.popen3("bundle exec rubocop --no-server -A") do |_stdin, _stdout, stderr, wait_thr|
-            exit_status = wait_thr.value
-            unless exit_status.success?
-              # :nocov:
-              raise "could not bundle exec rubocop -A. #{stderr.read}"
-              # :nocov:
+
+          do_it = -> { run_cmd_and_return_output("bundle exec rubocop --no-server -A") }
+
+          if Bundler.respond_to?(:with_unbundled_env)
+            Bundler.with_unbundled_env do
+              do_it.call
             end
+          else
+            # :nocov:
+            do_it.call
+            # :nocov:
           end
         end
 

@@ -1,3 +1,7 @@
+## [0.0.17] - 2025-04-22
+
+- Fix bug preventing rubocop from running if it's not available in the outer environment
+
 ## [0.0.16] - 2025-04-15
 
 - Fix bug when FileUtils isn't already required by other gems
