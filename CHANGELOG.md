@@ -1,3 +1,8 @@
+## [0.0.16] - 2025-04-15
+
+- Fix bug when FileUtils isn't already required by other gems
+- Support new ExtractRepo interface
+
 ## [0.0.15] - 2025-04-08
 
 - Improve generated README.md

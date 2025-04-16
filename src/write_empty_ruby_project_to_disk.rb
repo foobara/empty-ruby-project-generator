@@ -1,5 +1,6 @@
-require_relative "generate_empty_ruby_project"
+require "fileutils"
 require "extract_repo"
+require_relative "generate_empty_ruby_project"
 
 module Foobara
   module Generators
@@ -11,8 +12,7 @@ module Foobara
           end
         end
 
-        depends_on GenerateEmptyRubyProject,
-                   ::ExtractRepo
+        depends_on GenerateEmptyRubyProject, ::ExtractRepo
 
         inputs do
           extract ExtractInputs
