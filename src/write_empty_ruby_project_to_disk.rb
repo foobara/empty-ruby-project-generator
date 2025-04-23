@@ -15,7 +15,9 @@ module Foobara
         depends_on GenerateEmptyRubyProject, ::ExtractRepo
 
         inputs do
-          extract ExtractInputs
+          extract_from_repo :string
+          paths_to_extract [:string]
+          delete_extracted :boolean, default: true
           project_config ProjectConfig, :required
           # TODO: should be able to delete this and inherit it
           output_directory :string
@@ -38,15 +40,15 @@ module Foobara
         end
 
         def extract_from_another_repo?
-          !!extract
+          !!extract_from_repo
         end
 
         def extract_from_another_repo
           run_subcommand!(
             ExtractRepo,
-            repo_url_or_path: extract.repo,
-            paths: extract.paths,
-            delete_extracted: extract.delete_extracted,
+            repo_url_or_path: extract_from_repo,
+            paths: paths_to_extract,
+            delete_extracted:,
             output_path: output_directory
           )
         end

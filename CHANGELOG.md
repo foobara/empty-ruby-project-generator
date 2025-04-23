@@ -1,4 +1,8 @@
-## [0.0.17] - 2025-04-22
+## [0.0.18] - 2025-04-23
+
+- Improve interface a bit to be more intuitive re: extracting code from another repo
+
+## [0.0.17] - 2025-04-15
 
 - Fix bug preventing rubocop from running if it's not available in the outer environment
 

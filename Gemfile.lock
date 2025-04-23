@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    foobara-empty-ruby-project-generator (0.0.17)
+    foobara-empty-ruby-project-generator (0.0.18)
       extract-repo (~> 0.0.1)
       foobara (~> 0.0.94)
       foobara-files-generator (~> 0.0.1)
@@ -19,7 +19,7 @@ GEM
       foobara (~> 0.0.102)
       foobara-sh-cli-connector (~> 0.0.1)
     ffi (1.17.2-x86_64-linux-gnu)
-    foobara (0.0.102)
+    foobara (0.0.109)
       bigdecimal
       foobara-lru-cache (~> 0.0.2)
       foobara-util (~> 0.0.11)
@@ -101,7 +101,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.2)
-    rubocop (1.75.2)
+    rubocop (1.75.3)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -118,7 +118,7 @@ GEM
     rubocop-rake (0.7.1)
       lint_roller (~> 1.1)
       rubocop (>= 1.72.1)
-    rubocop-rspec (3.5.0)
+    rubocop-rspec (3.6.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
     ruby-progressbar (1.13.0)
