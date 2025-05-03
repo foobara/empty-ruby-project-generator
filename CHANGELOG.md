@@ -1,3 +1,7 @@
+## [0.0.19] - 2025-05-03
+
+- Do not fail just because gh isn't installed
+
 ## [0.0.18] - 2025-04-23
 
 - Improve interface a bit to be more intuitive re: extracting code from another repo

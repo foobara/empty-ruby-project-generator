@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
   ] + Find.find("templates/").select { |f| File.file?(f) }
 
   spec.add_dependency "extract-repo", "~> 0.0.1"
-  spec.add_dependency "foobara", "~> 0.0.94"
+  spec.add_dependency "foobara", "~> 0.0.116"
   spec.add_dependency "foobara-files-generator", "~> 0.0.1"
 
   spec.require_paths = ["lib"]
