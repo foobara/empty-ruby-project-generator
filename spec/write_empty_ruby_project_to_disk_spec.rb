@@ -20,14 +20,14 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
       turn_on_rbenv_bundler: true
     )
   end
-
   let(:name) { "some-org/some-namespace_some-other-namespace_final-thingy" }
   let(:output_directory) { "#{__dir__}/../tmp/empty_ruby_project_test_suite_project_output" }
 
   before do
     # rubocop:disable RSpec/AnyInstance
-    allow_any_instance_of(described_class).to receive(:git_commit).and_return(nil)
-    allow_any_instance_of(described_class).to receive(:rbenv_bundler_on).and_return(nil)
+    # Stubbing these to let more lines of the code be hit by the test suite
+    allow_any_instance_of(described_class).to receive(:push_to_github_failed).and_return(nil)
+    allow_any_instance_of(described_class).to receive(:use_git_failed).and_return(nil)
     # rubocop:enable RSpec/AnyInstance
     FileUtils.rm_rf output_directory
   end

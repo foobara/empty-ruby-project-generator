@@ -3,6 +3,8 @@ ruby File.read("#{__dir__}/.ruby-version")
 
 gemspec
 
+# gem "foobara-files-generator", path: "../files-generator"
+
 gem "rake"
 
 group :development do

@@ -35,6 +35,8 @@ module Foobara
           output
         end
 
+        attr_accessor :use_git_failed, :push_to_github_failed
+
         def create_output_directory_if_needed
           FileUtils.mkdir_p output_directory
         end
@@ -106,22 +108,15 @@ module Foobara
 
         def bundle_install
           puts "bundling..."
-          do_it = proc do
-            Open3.popen3("bundle install") do |_stdin, _stdout, stderr, wait_thr|
-              exit_status = wait_thr.value
-              unless exit_status.success?
-                # :nocov:
-                raise "could not bundle install. #{stderr.read}"
-                # :nocov:
-              end
-            end
-          end
+          cmd = "bundle install"
 
           if Bundler.respond_to?(:with_unbundled_env)
-            Bundler.with_unbundled_env(&do_it)
+            Bundler.with_unbundled_env do
+              run_cmd_and_return_output(cmd)
+            end
           else
             # :nocov:
-            do_it.call
+            run_cmd_and_return_output(cmd)
             # :nocov:
           end
         end
@@ -129,15 +124,15 @@ module Foobara
         def rubocop_autocorrect
           puts "linting..."
 
-          do_it = -> { run_cmd_and_return_output("bundle exec rubocop --no-server -A") }
+          cmd = "bundle exec rubocop --no-server -A"
 
           if Bundler.respond_to?(:with_unbundled_env)
             Bundler.with_unbundled_env do
-              do_it.call
+              run_cmd_and_return_output(cmd)
             end
           else
             # :nocov:
-            do_it.call
+            run_cmd_and_return_output(cmd)
             # :nocov:
           end
         end
@@ -145,90 +140,106 @@ module Foobara
         def make_bin_files_executable
           Dir["bin/*"].each do |file|
             if File.file?(file)
-              system("chmod u+x #{file}")
+              cmd = "chmod u+x #{file}"
+              begin
+                run_cmd_and_return_output(cmd)
+              rescue CouldNotExecuteError => e
+                # :nocov:
+                warn e.message
+                # :nocov:
+              end
             end
           end
         end
 
         def git_init
-          cmd = "git init"
+          return if use_git_failed
 
-          Open3.popen3(cmd) do |_stdin, _stdout, stderr, wait_thr|
-            exit_status = wait_thr.value
-            unless exit_status.success?
-              # :nocov:
-              raise "could not #{cmd}\n#{stderr.read}"
-              # :nocov:
-            end
-          end
+          cmd = "git init"
+          run_cmd_and_return_output(cmd)
+        rescue CouldNotExecuteError => e
+          # :nocov:
+          self.use_git_failed = true
+          warn e.message
+          # :nocov:
         end
 
         def git_add_all
-          cmd = "git add ."
+          return if use_git_failed
 
-          Open3.popen3(cmd) do |_stdin, _stdout, stderr, wait_thr|
-            exit_status = wait_thr.value
-            unless exit_status.success?
-              # :nocov:
-              raise "could not #{cmd}\n#{stderr.read}"
-              # :nocov:
-            end
-          end
+          cmd = "git add ."
+          run_cmd_and_return_output(cmd)
+        rescue CouldNotExecuteError => e
+          # :nocov:
+          self.use_git_failed = true
+          warn e.message
+          # :nocov:
         end
 
         def git_commit
-          # TODO: set author/name with git config in CI so we don't have to skip this
+          return if use_git_failed
+
+          cmd = "git commit -m 'Create ruby project files'"
+          run_cmd_and_return_output(cmd)
+        rescue CouldNotExecuteError => e
           # :nocov:
-          Open3.popen3("git commit -m 'Create ruby project files'") do |_stdin, stdout, stderr, wait_thr|
-            exit_status = wait_thr.value
-            unless exit_status.success?
-              raise "could not git commit -m 'Initial commit'. OUTPUT\n#{stdout.read}\nERROR:#{stderr.read}"
-            end
-          end
+          self.use_git_failed = true
+          warn e.message
           # :nocov:
         end
 
         def github_create_repo
+          return if push_to_github_failed
+
           puts "pushing to github..."
 
           cmd = "gh repo create --private #{project_config.org_slash_project_kebab}"
-          run_cmd_and_write_output(cmd, raise_if_fails: false)
+          exit_status = run_cmd_and_write_output(cmd, raise_if_fails: false)
+
+          unless exit_status&.success?
+            self.push_to_github_failed = true
+          end
         end
 
         def git_add_remote_origin
-          unless system("git remote add origin git@github.com:#{project_config.org_slash_project_kebab}.git")
+          return if push_to_github_failed
+
+          cmd = "git remote add origin git@github.com:#{project_config.org_slash_project_kebab}.git"
+          exit_status = run_cmd_and_write_output(cmd, raise_if_fails: false)
+
+          unless exit_status&.success?
             # :nocov:
-            raise "could not git remote add origin git@github.com:#{project_config.org_slash_project_kebab}.git"
+            self.push_to_github_failed = true
             # :nocov:
           end
         end
 
         def git_branch_main
-          unless system("git branch -M main")
+          return if use_git_failed
+
+          cmd = "git branch -M main"
+          exit_status = run_cmd_and_write_output(cmd, raise_if_fails: false)
+
+          unless exit_status&.success?
             # :nocov:
-            raise "could not git branch -M main"
+            self.use_git_failed = true
             # :nocov:
           end
         end
 
         def push_to_github
-          Open3.popen3("git push -u origin main") do |_stdin, _stdout, stderr, wait_thr|
-            exit_status = wait_thr.value
-            unless exit_status.success?
-              warn "WARNING: could not git push -u origin main \n #{stderr.read}"
-            end
-          end
+          return if push_to_github_failed
+
+          cmd = "git push -u origin main"
+          run_cmd_and_return_output(cmd)
+        rescue CouldNotExecuteError => e
+          self.push_to_github_failed = true
+          warn e.message
         end
 
         def rbenv_bundler_on
-          # :nocov:
-          Open3.popen3("rbenv bundler on") do |_stdin, _stdout, stderr, wait_thr|
-            exit_status = wait_thr.value
-            unless exit_status.success?
-              warn "WARNING: could not rbenv bundler on \n #{stderr.read}"
-            end
-          end
-          # :nocov:
+          cmd = "rbenv bundler on"
+          run_cmd_and_write_output(cmd, raise_if_fails: false)
         end
 
         def output

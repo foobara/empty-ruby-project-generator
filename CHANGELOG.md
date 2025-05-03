@@ -1,3 +1,7 @@
+## [0.0.21] - 2025-05-03
+
+- Make optional things fail-safe when shelling out and simplify the code a bit, too
+
 ## [0.0.20] - 2025-05-03
 
 - Add use_git, push_to_github, and turn_on_rbenv_bundler options and default them to false
