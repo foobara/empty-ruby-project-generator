@@ -1,3 +1,7 @@
+## [0.0.20] - 2025-05-03
+
+- Add use_git, push_to_github, and turn_on_rbenv_bundler options and default them to false
+
 ## [0.0.19] - 2025-05-03
 
 - Do not fail just because gh isn't installed

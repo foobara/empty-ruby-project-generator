@@ -19,7 +19,9 @@ module Foobara
           author_names [:string]
           author_emails [:string]
           homepage_url :string
-          # Probably need a better default such as not licensed.
+          use_git :boolean, default: false
+          push_to_github :boolean, default: false
+          turn_on_rbenv_bundler :boolean, default: false
           license :string, :allow_nil, one_of: ["MIT", "Apache-2.0", "MPL-2.0", "Apache-2.0 OR MIT"]
         end
 

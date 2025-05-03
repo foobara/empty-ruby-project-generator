@@ -61,6 +61,18 @@ module Foobara
           project_config.org_slash_project_kebab
         end
 
+        def push_to_github?
+          project_config.push_to_github
+        end
+
+        def turn_on_rbenv_bundler?
+          project_config.turn_on_rbenv_bundler
+        end
+
+        def use_git?
+          project_config.use_git
+        end
+
         def generate_file_contents
           puts "generating..."
           # TODO: just pass this in as the inputs instead of the command??
@@ -72,14 +84,23 @@ module Foobara
             bundle_install
             make_bin_files_executable
             rubocop_autocorrect
-            git_init unless extract_from_another_repo?
-            git_add_all
-            git_commit
-            github_create_repo
-            git_add_remote_origin
-            git_branch_main
-            push_to_github
-            rbenv_bundler_on
+
+            if use_git?
+              git_init unless extract_from_another_repo?
+              git_add_all
+              git_commit
+              git_branch_main
+
+              if push_to_github?
+                github_create_repo
+                git_add_remote_origin
+                push_to_github
+              end
+
+              if turn_on_rbenv_bundler?
+                rbenv_bundler_on
+              end
+            end
           end
         end
 

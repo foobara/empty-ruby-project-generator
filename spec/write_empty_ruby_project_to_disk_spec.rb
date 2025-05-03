@@ -14,7 +14,10 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
       name:,
       description: "whatever",
       author_names: ["Somebody"],
-      author_emails: ["some@email.com"]
+      author_emails: ["some@email.com"],
+      use_git: true,
+      push_to_github: true,
+      turn_on_rbenv_bundler: true
     )
   end
 

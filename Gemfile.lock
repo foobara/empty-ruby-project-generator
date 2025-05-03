@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    foobara-empty-ruby-project-generator (0.0.19)
+    foobara-empty-ruby-project-generator (0.0.20)
       extract-repo (~> 0.0.1)
       foobara (~> 0.0.116)
       foobara-files-generator (~> 0.0.1)
@@ -24,8 +24,8 @@ GEM
       foobara-lru-cache (~> 0.0.2)
       foobara-util (~> 0.0.11)
       inheritable-thread-vars (~> 0.0.1)
-    foobara-files-generator (0.0.5)
-      foobara
+    foobara-files-generator (0.0.6)
+      foobara (~> 0.0.116)
     foobara-lru-cache (0.0.2)
     foobara-rubocop-rules (0.0.8)
       rubocop
