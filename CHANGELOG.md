@@ -1,3 +1,7 @@
+## [0.0.22] - 2025-05-07
+
+- Do not stop just because rubocop fails
+
 ## [0.0.21] - 2025-05-03
 
 - Make optional things fail-safe when shelling out and simplify the code a bit, too

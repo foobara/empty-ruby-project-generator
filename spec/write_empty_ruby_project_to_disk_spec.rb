@@ -75,7 +75,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::WriteEmptyRubyPro
         }
       end
       let(:delete_extracted) { true }
-      let(:paths_to_extract) { %w[new_name] }
+      let(:paths_to_extract) { ["new_name"] }
 
       def inflate_test_repo
         Dir.chdir(File.dirname(repo_path)) do

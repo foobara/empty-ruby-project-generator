@@ -1,6 +1,6 @@
 RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRubyProject do
   let(:name) { "name-space1_name-space1/name-space3_name-space4" }
-  let(:author_names) { %w[Foo Bar] }
+  let(:author_names) { ["Foo", "Bar"] }
   let(:author_emails) { ["a@b.com", "c@d.com"] }
   let(:license) { nil }
 

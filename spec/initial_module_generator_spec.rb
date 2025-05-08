@@ -10,6 +10,6 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::Generators::Initi
   describe "#module_path" do
     subject { generator.module_path }
 
-    it { is_expected.to eq(%w[SomeOrg SomeProject]) }
+    it { is_expected.to eq(["SomeOrg", "SomeProject"]) }
   end
 end
