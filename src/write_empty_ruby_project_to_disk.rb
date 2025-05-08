@@ -135,6 +135,10 @@ module Foobara
             run_cmd_and_return_output(cmd)
             # :nocov:
           end
+        rescue CouldNotExecuteError => e
+          # :nocov:
+          warn e.message
+          # :nocov:
         end
 
         def make_bin_files_executable
