@@ -1,3 +1,8 @@
+## [0.0.23] - 2025-05-07
+
+- Bump deps in templates
+- Improve CHANGELOG.md template
+
 ## [0.0.22] - 2025-05-07
 
 - Do not stop just because rubocop fails
