@@ -1,5 +1,5 @@
 module Foobara
   module EmptyRubyProjectGenerator
-    VERSION = "0.0.23".freeze
+    VERSION = "1.0.0".freeze
   end
 end
