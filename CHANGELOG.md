@@ -1,3 +1,12 @@
+## [1.0.1] - 2025-08-22
+
+- Remove bin/ files generation
+
+## [1.0.0] - 2025-07-09
+
+- Simplify MINIMUM_RUBY_VERSION
+- Make generated version boundaries more future-proof
+
 ## [0.0.23] - 2025-05-07
 
 - Bump deps in templates

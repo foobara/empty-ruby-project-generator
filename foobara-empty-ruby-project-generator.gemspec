@@ -1,10 +1,6 @@
 require_relative "version"
 require "find"
 
-local_ruby_version = File.read("#{__dir__}/.ruby-version").chomp
-local_ruby_version_minor = local_ruby_version[/\A(\d+\.\d+)\.\d+\z/, 1]
-minimum_ruby_version = "#{local_ruby_version_minor}.0"
-
 Gem::Specification.new do |spec|
   spec.name = "foobara-empty-ruby-project-generator"
   spec.version = Foobara::EmptyRubyProjectGenerator::VERSION
@@ -18,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.license = "Apache-2.0 OR MIT"
   spec.licenses = ["Apache-2.0", "MIT"]
 
-  spec.required_ruby_version = ">= #{minimum_ruby_version}"
+  spec.required_ruby_version = Foobara::EmptyRubyProjectGenerator::MINIMUM_RUBY_VERSION
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
@@ -34,7 +30,7 @@ Gem::Specification.new do |spec|
   ] + Find.find("templates/").select { |f| File.file?(f) }
 
   spec.add_dependency "extract-repo", "< 2.0.0"
-  spec.add_dependency "foobara", ">= 0.0.136", "< 2.0.0"
+  spec.add_dependency "foobara", ">= 0.1.1", "< 2.0.0"
   spec.add_dependency "foobara-files-generator", "< 2.0.0"
 
   spec.require_paths = ["lib"]

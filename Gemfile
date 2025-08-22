@@ -1,5 +1,7 @@
+require_relative "version"
+
 source "https://rubygems.org"
-ruby File.read("#{__dir__}/.ruby-version")
+ruby Foobara::EmptyRubyProjectGenerator::MINIMUM_RUBY_VERSION
 
 gemspec
 
@@ -20,7 +22,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "foobara-spec-helpers", "~> 0.0.1"
+  gem "foobara-spec-helpers", "< 2.0.0"
   gem "rspec"
   gem "rspec-its"
   gem "simplecov"
