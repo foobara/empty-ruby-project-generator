@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    foobara-empty-ruby-project-generator (1.0.2)
+    foobara-empty-ruby-project-generator (1.0.3)
       extract-repo (< 2.0.0)
       foobara (>= 0.1.1, < 2.0.0)
       foobara-files-generator (< 2.0.0)

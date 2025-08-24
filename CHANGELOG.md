@@ -1,3 +1,7 @@
+## [1.0.3] - 2025-08-24
+
+- By default, strip Set-Cookie headers out of VCR cassettes
+
 ## [1.0.2] - 2025-08-24
 
 - Restore generating bin/console since it powers `foob c`
