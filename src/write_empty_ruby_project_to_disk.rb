@@ -84,6 +84,7 @@ module Foobara
         def run_post_generation_tasks
           Dir.chdir output_directory do
             bundle_install
+            make_bin_files_executable
             rubocop_autocorrect
 
             if use_git?
@@ -138,6 +139,21 @@ module Foobara
           # :nocov:
           warn e.message
           # :nocov:
+        end
+
+        def make_bin_files_executable
+          Dir["bin/*"].each do |file|
+            if File.file?(file)
+              cmd = "chmod u+x #{file}"
+              begin
+                run_cmd_and_return_output(cmd)
+              rescue CouldNotExecuteError => e
+                # :nocov:
+                warn e.message
+                # :nocov:
+              end
+            end
+          end
         end
 
         def git_init

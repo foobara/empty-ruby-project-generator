@@ -1,3 +1,7 @@
+## [1.0.2] - 2025-08-24
+
+- Restore generating bin/console since it powers `foob c`
+
 ## [1.0.1] - 2025-08-22
 
 - Remove bin/ files generation

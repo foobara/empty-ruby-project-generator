@@ -8,6 +8,7 @@ module Foobara
               case manifest
               when ProjectConfig
                 [
+                  Generators::BinConsoleGenerator,
                   Generators::BootFinishGenerator,
                   Generators::ChangelogGenerator,
                   Generators::CiYamlGenerator,
