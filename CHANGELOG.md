@@ -1,3 +1,7 @@
+## [1.0.4] - 2025-08-24
+
+- Scrub cookies in vcr.rb instead of deleting them
+
 ## [1.0.3] - 2025-08-24
 
 - By default, strip Set-Cookie headers out of VCR cassettes
