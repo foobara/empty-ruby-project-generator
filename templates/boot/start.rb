@@ -3,7 +3,7 @@ ENV["FOOBARA_ENV"] ||= "development"
 require "bundler/setup"
 
 if ["development", "test"].include?(ENV["FOOBARA_ENV"])
-  # :nocov:
+  # simplecov:disable
   if ENV["CI"] != "true"
     if ENV["RUBY_DEBUG"] == "true"
       require "debug"
@@ -14,7 +14,7 @@ if ["development", "test"].include?(ENV["FOOBARA_ENV"])
       require "pry-byebug"
     end
   end
-  # :nocov:
+  # simplecov:enable
 end
 
 require_relative "config"
