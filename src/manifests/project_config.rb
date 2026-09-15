@@ -99,7 +99,7 @@ module Foobara
           # TODO: implement #[] or move it up to Model from Entity if it exists there.
           @author_names ||= read_attribute(:author_names) || begin
             # TODO: dump a git config file in CI so we don't have to skip this
-            # :nocov:
+            # simplecov:disable
             name = `git config --get user.name`
 
             if $CHILD_STATUS.exitstatus == 0
@@ -107,13 +107,13 @@ module Foobara
             else
               raise "Must set author_names because we can't get it from git for some reason"
             end
-            # :nocov:
+            # simplecov:enable
           end
         end
 
         def author_emails
           @author_emails ||= read_attribute(:author_emails) || begin
-            # :nocov:
+            # simplecov:disable
             email = `git config --get user.email`
 
             if $CHILD_STATUS.exitstatus == 0
@@ -121,7 +121,7 @@ module Foobara
             else
               raise "Must set author_emails because we can't get it from git for some reason"
             end
-            # :nocov:
+            # simplecov:enable
           end
         end
 

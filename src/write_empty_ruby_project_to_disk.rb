@@ -115,9 +115,9 @@ module Foobara
               run_cmd_and_return_output(cmd)
             end
           else
-            # :nocov:
+            # simplecov:disable
             run_cmd_and_return_output(cmd)
-            # :nocov:
+            # simplecov:enable
           end
         end
 
@@ -131,14 +131,14 @@ module Foobara
               run_cmd_and_return_output(cmd)
             end
           else
-            # :nocov:
+            # simplecov:disable
             run_cmd_and_return_output(cmd)
-            # :nocov:
+            # simplecov:enable
           end
         rescue CouldNotExecuteError => e
-          # :nocov:
+          # simplecov:disable
           warn e.message
-          # :nocov:
+          # simplecov:enable
         end
 
         def make_bin_files_executable
@@ -148,9 +148,9 @@ module Foobara
               begin
                 run_cmd_and_return_output(cmd)
               rescue CouldNotExecuteError => e
-                # :nocov:
+                # simplecov:disable
                 warn e.message
-                # :nocov:
+                # simplecov:enable
               end
             end
           end
@@ -162,10 +162,10 @@ module Foobara
           cmd = "git init"
           run_cmd_and_return_output(cmd)
         rescue CouldNotExecuteError => e
-          # :nocov:
+          # simplecov:disable
           self.use_git_failed = true
           warn e.message
-          # :nocov:
+          # simplecov:enable
         end
 
         def git_add_all
@@ -174,10 +174,10 @@ module Foobara
           cmd = "git add ."
           run_cmd_and_return_output(cmd)
         rescue CouldNotExecuteError => e
-          # :nocov:
+          # simplecov:disable
           self.use_git_failed = true
           warn e.message
-          # :nocov:
+          # simplecov:enable
         end
 
         def git_commit
@@ -186,10 +186,10 @@ module Foobara
           cmd = "git commit -m 'Create ruby project files'"
           run_cmd_and_return_output(cmd)
         rescue CouldNotExecuteError => e
-          # :nocov:
+          # simplecov:disable
           self.use_git_failed = true
           warn e.message
-          # :nocov:
+          # simplecov:enable
         end
 
         def github_create_repo
@@ -212,9 +212,9 @@ module Foobara
           exit_status = run_cmd_and_write_output(cmd, raise_if_fails: false)
 
           unless exit_status&.success?
-            # :nocov:
+            # simplecov:disable
             self.push_to_github_failed = true
-            # :nocov:
+            # simplecov:enable
           end
         end
 
@@ -225,9 +225,9 @@ module Foobara
           exit_status = run_cmd_and_write_output(cmd, raise_if_fails: false)
 
           unless exit_status&.success?
-            # :nocov:
+            # simplecov:disable
             self.use_git_failed = true
-            # :nocov:
+            # simplecov:enable
           end
         end
 

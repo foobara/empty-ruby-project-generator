@@ -27,9 +27,9 @@ module Foobara
               when "MPL-2.0"
                 Mpl2LicenseGenerator
               else
-                # :nocov:
+                # simplecov:disable
                 raise "Unknown license string #{license_string}"
-                # :nocov:
+                # simplecov:enable
               end
             end.map do |klass|
               klass.new(relevant_manifest)
@@ -54,9 +54,9 @@ module Foobara
               "This project is dual licensed under your choice of the " \
               "#{licenses.first} license and the #{licenses.last} license."
             else
-              # :nocov:
+              # simplecov:disable
               raise "Not sure what to do with #{licenses.size} licenses"
-              # :nocov:
+              # simplecov:enable
             end
           end
         end

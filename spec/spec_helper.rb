@@ -6,6 +6,8 @@ require "pry"
 require "pry-byebug"
 require "rspec/its"
 
+Warning[:deprecated] = true
+
 RSpec.configure do |config|
   config.filter_run_when_matching :focus
   config.example_status_persistence_file_path = ".rspec_status"

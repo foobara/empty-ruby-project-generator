@@ -1,3 +1,10 @@
+## [1.0.5] - 2026-09-15
+
+- Adds ./local_data to generated .gitignore
+- Fixes various deprecation warnings that pop up in newly generated projects
+- Defaults to branch coverage (should probably be optional!)
+- Make sure all deprecation warnings are shown by default in newly generated projects 
+
 ## [1.0.4] - 2025-08-24
 
 - Scrub cookies in vcr.rb instead of deleting them
