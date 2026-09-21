@@ -1,49 +1,80 @@
 # Foobara::EmptyRubyProjectGenerator
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library
-into a gem. Put your Ruby code in the file `lib/foobara/empty_ruby_project_generator`. To experiment with that code,
-run `bin/console` for an interactive prompt.
+Generates an empty Ruby project with rubocop, rspec, and GitHub Actions 
+already wired up, so you can focus on writing your gem's code rather than 
+setting up boilerplate code.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it
-to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with
-instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Install the gem directly in the terminal:
 
-Install the gem and add to the application's Gemfile by executing:
+    $ gem install foobara-empty-ruby-project-generator
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+Or add it to your Gemfile:
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+    $ bundle add foobara-empty-ruby-project-generator
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+You will also need the `foob` CLI to run the generator:
+
+    $ gem install foob
 
 ## Usage
 
-TODO: Write usage instructions here
+Run the generator to create a new project:
 
-## Development
+    $ foob g ruby-project -n NAME [options]
 
-```bash
-bundle config --global local.foobara /path/to/foobara
-bundle config set disable_local_branch_check true
-```
+The `-n` flag represents the name of the project to be generated and is required. It accepts either a plain project name or a name in the 
+`org/project` format:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can
-also run `bin/console` for an interactive prompt that will allow you to experiment.
+- **Individual account:** `-n my-gem` — creates a project with a single 
+  module e.g. `MyGem`
+- **Organization:** `-n my-org/my-gem` — creates a project with a nested 
+  module e.g. `MyOrg::MyGem` and uses `my-org` as the GitHub organization
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the
-version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version,
-push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+For a full list of available options run:
+
+    $ foob g ruby-project --help
+
+**Commonly used options:**
+
+| Flag | Description |
+|------|-------------|
+| `-n, --name` | Project name or org/project (required) |
+| `-d, --description` | Project description. Defaults to `"No description. Add one."` |
+| `-a, --author-names` | Author name(s) |
+| `--author-emails` | Author email(s) |
+| `-l, --license` | One of: `MIT`, `Apache-2.0`, `MPL-2.0`, `Apache-2.0 OR MIT` |
+| `-u, --use-git` | Initialize a git repository |
+| `--push-to-github` | Create a private GitHub repo and push to it |
+| `-o, --output-directory` | Where to generate the project. Defaults to the project name |
+
+**Example:**
+
+    $ foob g ruby-project -n my-org/my-gem -d "Does something useful" -l MIT --use-git
+
+Once generated, your project will have a `lib/` folder which is where 
+your gem's Ruby code lives. Based on the name you provided when generating the project, the lib folder will be 
+structured as:
+
+- `lib/my_org/my_gem.rb` for an org/project name
+- `lib/my_gem.rb` for a plain project name
+
+Within the generated `.rb` file located in the `lib/` folder, you can place your gem's Ruby code. 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub
-at https://github.com/[USERNAME]/foobara-empty_ruby_project_generator.
+Contributions in the form of PRs and issues are always welcome.
+
+To work on an existing issue or submit a PR:
+
+1. Fork the repo and clone it to your local machine
+2. Run `bundle install` to install dependencies
+3. Implement your changes and add tests where applicable
+4. Run `rake` to ensure all tests pass and that rubocop reports no errors
+5. Commit, push to GitHub and open a PR for review
 
 ## License
 
-This project is licensed under your choice of the Apache-2.0 license or the MIT license.
-See [LICENSE.txt](LICENSE.txt) for more info about licensing.
+This project is licensed under your choice of the Apache-2.0 license or 
+the MIT license. See [LICENSE.txt](LICENSE.txt) for more info.
