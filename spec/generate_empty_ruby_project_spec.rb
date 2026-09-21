@@ -22,6 +22,15 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
     expect(result["spec/spec_helper.rb"]).to include('require_relative "../boot/finish"')
   end
 
+  it "uses the generated project library path in the README" do
+    expect(outcome).to be_success
+
+    expect(result["README.md"]).to include(
+      "lib/name_space1_name_space1/name_space3_name_space4.rb"
+    )
+    expect(result["README.md"]).not_to include("empty_ruby_project_generator")
+  end
+
   context "with all options" do
     let(:homepage_url) { "https://example.com" }
     let(:license) { "MIT" }
