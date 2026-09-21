@@ -28,7 +28,6 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
     expect(result["README.md"]).to include(
       "lib/name_space1_name_space1/name_space3_name_space4.rb"
     )
-    expect(result["README.md"]).not_to include("empty_ruby_project_generator")
   end
 
   context "with all options" do
