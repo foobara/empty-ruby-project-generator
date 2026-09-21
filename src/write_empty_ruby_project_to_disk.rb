@@ -197,7 +197,7 @@ module Foobara
 
           puts "pushing to github..."
 
-          cmd = "gh repo create --private #{project_config.org_slash_project_kebab}"
+          cmd = "gh repo create --private #{project_config.org_slash_project_kebab} --description #{project_config.description.inspect}"
           exit_status = run_cmd_and_write_output(cmd, raise_if_fails: false)
 
           unless exit_status&.success?
