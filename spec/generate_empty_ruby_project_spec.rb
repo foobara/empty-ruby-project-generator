@@ -22,6 +22,15 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
     expect(result["spec/spec_helper.rb"]).to include('require_relative "../boot/finish"')
   end
 
+  it "uses the current foobara version as the minimum dependency" do
+    expect(outcome).to be_success
+
+    current_version = Gem.loaded_specs["foobara"].version.to_s
+    gemspec_path = result.keys.find { |path| path.end_with?(".gemspec") }
+
+    expect(result.fetch(gemspec_path)).to include(">= #{current_version}")
+  end
+
   it "uses the generated project library path in the README" do
     expect(outcome).to be_success
 
