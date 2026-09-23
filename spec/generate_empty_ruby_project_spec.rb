@@ -30,6 +30,14 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
 
     expect(result.fetch(gemspec_path)).to include(">= #{current_version}")
   end
+  
+  it "uses the generated project library path in the README" do
+    expect(outcome).to be_success
+
+    expect(result["README.md"]).to include(
+      "lib/name_space1_name_space1/name_space3_name_space4.rb"
+    )
+  end
 
   context "with all options" do
     let(:homepage_url) { "https://example.com" }
