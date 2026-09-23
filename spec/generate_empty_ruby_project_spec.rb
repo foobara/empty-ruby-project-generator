@@ -30,7 +30,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
 
     expect(result.fetch(gemspec_path)).to include(">= #{current_version}")
   end
-  
+
   it "uses the generated project library path in the README" do
     expect(outcome).to be_success
 
