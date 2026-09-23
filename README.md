@@ -1,28 +1,26 @@
 # Foobara::EmptyRubyProjectGenerator
 
-Generates an empty Ruby project with rubocop, rspec, and GitHub Actions 
-already wired up, so you can focus on writing your gem's code rather than 
-setting up boilerplate code.
+Generates an empty Ruby project with RuboCop, RSpec, and GitHub Actions already wired up, so you can focus on writing your gem's code rather than setting up boilerplate code. 
+
+The generated project is ideally meant to be used with Foobara however, it can also be used for non-Foobara projects by deleting Foobara-specific parts after generation. 
 
 ## Installation
 
+The `foobara-empty-ruby-project-generator` is part of the `foob` family of code generators. Installing the `foob` gem will therefore automatically bring in this generator along with all other foobara generators eliminating the need to install the `foobara-empty-ruby-project-generator` gem separately. 
+
 Install the gem directly in the terminal:
 
-    $ gem install foobara-empty-ruby-project-generator
+    `$ gem install foob`
 
 Or add it to your Gemfile:
 
-    $ bundle add foobara-empty-ruby-project-generator
-
-You will also need the `foob` CLI to run the generator:
-
-    $ gem install foob
+    `$ bundle add foob`
 
 ## Usage
 
 Run the generator to create a new project:
 
-    $ foob g ruby-project -n NAME [options]
+    `$ foob g ruby-project -n NAME [options]`
 
 The `-n` flag represents the name of the project to be generated and is required. It accepts either a plain project name or a name in the 
 `org/project` format:
@@ -34,7 +32,11 @@ The `-n` flag represents the name of the project to be generated and is required
 
 For a full list of available options run:
 
-    $ foob g ruby-project --help
+    `$ foob g ruby-project --help`
+
+or
+
+    `$ foob help ruby-project`
 
 **Commonly used options:**
 
@@ -51,16 +53,17 @@ For a full list of available options run:
 
 **Example:**
 
-    $ foob g ruby-project -n my-org/my-gem -d "Does something useful" -l MIT --use-git
+    `$ foob g ruby-project -n my-org/my-gem -d "Does something useful" -l MIT --use-git`
 
-Once generated, your project will have a `lib/` folder which is where 
-your gem's Ruby code lives. Based on the name you provided when generating the project, the lib folder will be 
-structured as:
+The above generator example when run will put the project in the `my-org/my-gem` folder. 
 
-- `lib/my_org/my_gem.rb` for an org/project name
-- `lib/my_gem.rb` for a plain project name
+Upon running the generator, all projects will have the following structure:
 
-Within the generated `.rb` file located in the `lib/` folder, you can place your gem's Ruby code. 
+- `lib/` - Contains all files that are loaded via `require` and based on the name you provided when generating the project, this folder will be structured as either `lib/my_org/my_gem.rb` for an organisation project name OR `lib/my_gem.rb` for a plain project name.
+
+- `src/` - Contains your ruby gem code. This is a Foobara-specific convention whereby instead of putting all your code in the `lib/` folder, the actual implementation code lives in `src/` folder while the `lib/` folder is reserved for code that can be required. 
+
+If you used the `foobara-empty-ruby-project-generator` gem to generate a non-Foobara Ruby project, you can delete the `src/` folder and place all your code in the `lib/` folder as well as delete any associated Foobara-specific parts. 
 
 ## Contributing
 
@@ -70,9 +73,10 @@ To work on an existing issue or submit a PR:
 
 1. Fork the repo and clone it to your local machine
 2. Run `bundle install` to install dependencies
-3. Implement your changes and add tests where applicable
-4. Run `rake` to ensure all tests pass and that rubocop reports no errors
-5. Commit, push to GitHub and open a PR for review
+3. Run `rake` to ensure that everything works as expected before making any changes. 
+4. Implement your changes and add tests where applicable
+5. Re-run `rake` to make sure that all tests and rubocop pass.
+6. Commit, push to GitHub and open a PR for review
 
 ## License
 
