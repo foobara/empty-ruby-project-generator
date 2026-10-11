@@ -38,8 +38,12 @@ module Foobara
         end
 
         def org_slash_project_kebab(organization_name = self.organization_name, project_name = self.project_name)
-          org_part = Util.kebab_case(organization_name)&.gsub("::", "-")
-          project_part = Util.kebab_case(project_name).gsub("::", "-")
+          org_part = if organization_name
+                       Util.kebab_case(organization_name)&.gsub("::", "-")
+                     end
+          project_part = if project_name
+                           Util.kebab_case(project_name).gsub("::", "-")
+                         end
 
           if org_part.nil? || org_part.empty?
             project_part
