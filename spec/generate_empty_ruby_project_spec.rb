@@ -19,7 +19,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
   it "generates an empty ruby project" do
     expect(outcome).to be_success
 
-    expect(result["spec/spec_helper.rb"]).to include('require_relative "../boot/finish"')
+    expect(result["spec/spec_helper.rb"].content).to include('require_relative "../boot/finish"')
   end
 
   context "with all options" do
@@ -40,7 +40,7 @@ RSpec.describe Foobara::Generators::EmptyRubyProjectGenerator::GenerateEmptyRuby
     it "generates an empty ruby project using the given options" do
       expect(outcome).to be_success
 
-      expect(result["spec/spec_helper.rb"]).to include('require_relative "../boot/finish"')
+      expect(result["spec/spec_helper.rb"].content).to include('require_relative "../boot/finish"')
     end
   end
 
