@@ -12,6 +12,10 @@ module Foobara
           def target_path
             "#{kebab_case_full_project_name}.gemspec"
           end
+
+          def current_foobara_version
+            Gem.loaded_specs["foobara"].version
+          end
         end
       end
     end
