@@ -1,3 +1,11 @@
+## [1.1.0] - 2026-10-10
+
+- Add Foobara.start! to finish.rb.erb template
+- Eliminate an annoying deprecation warning
+- Use current Foobara version in generated gemspec
+- Set created GitHub repo's description to the --description value
+- Put the correct project name in README.md.erb output
+
 ## [1.0.5] - 2026-09-15
 
 - Adds ./local_data to generated .gitignore

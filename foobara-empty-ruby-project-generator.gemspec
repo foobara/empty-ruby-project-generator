@@ -30,8 +30,8 @@ Gem::Specification.new do |spec|
   ] + Find.find("templates/").select { |f| File.file?(f) }
 
   spec.add_dependency "extract-repo", "< 2.0.0"
-  spec.add_dependency "foobara", ">= 0.1.1", "< 2.0.0"
-  spec.add_dependency "foobara-files-generator", "< 2.0.0"
+  spec.add_dependency "foobara", ">= 0.7.3", "< 2.0.0"
+  spec.add_dependency "foobara-files-generator", ">= 0.2.4", "< 2.0.0"
 
   spec.require_paths = ["lib"]
   spec.metadata["rubygems_mfa_required"] = "true"
