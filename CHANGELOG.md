@@ -1,3 +1,7 @@
+## [1.1.1] - 2026-11-06
+
+- Automatically treat use_git as set when push_to_github is set
+
 ## [1.1.0] - 2026-10-10
 
 - Add Foobara.start! to finish.rb.erb template

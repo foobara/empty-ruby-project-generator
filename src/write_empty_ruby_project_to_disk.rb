@@ -72,9 +72,7 @@ module Foobara
           project_config.turn_on_rbenv_bundler
         end
 
-        def use_git?
-          project_config.use_git
-        end
+        def use_git? = project_config.use_git?
 
         def generate_file_contents
           puts "generating..."

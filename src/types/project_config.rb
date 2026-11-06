@@ -25,6 +25,8 @@ module Foobara
           license :string, :allow_nil, one_of: ["MIT", "Apache-2.0", "MPL-2.0", "Apache-2.0 OR MIT"]
         end
 
+        def use_git? = use_git || push_to_github
+
         def kebab_case_project_name
           Util.kebab_case(project_module_path.join)
         end
